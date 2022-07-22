@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>groupware/login</title>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/common.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<!-- TODO: [jsp작업] jstl / alert event -->
+<!-- JSTL -->
+<!-- 인증되지 않은 로그인을 할 때 -->
+<!-- alert : 인증되지 않은 아이디입니다./n관리자에게 문의 바랍니다.-->
+
+<!-- 아이디, 비밀번호가 db와 일치하지 않을 때 -->
+<!-- alert : 아이디 또는 비밀번호를 잘못 입력했습니다./n입력하신 내용을 다시 확인해주세요.-->
+<!-- /JSTL -->
+<style>
+    /* Hide Scroll Bar (footer-copyright) */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    .main-wrap {
+        background-color: #EBEBEB;
+        width: 100%;
+        height: 100vh;
+    }
+
+    main {
+        background-color: #fff;
+        width: 560px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 55px 85px;
+    }
+
+    form {
+        width: 100%;
+        height: 100%;
+    }
+
+    .custom-btn {
+        width: 150px;
+        height: 55px;
+        background-color: #3699ff;
+        color: #fff;
+        border-radius: 27px;
+        font-size: 16px;
+    }
+
+    .custom-btn:hover {
+        font-weight: 700;
+    }
+
+    .input-box {
+        border: 1px solid #d5d5d5;
+    }
+
+    .blur-text {
+        color: #777;
+    }
+
+    .blur-text:hover {
+        color: #000;
+        font-weight: 500;
+    }
+
+    .footer-copy {
+        color: #fff;
+        background-color: #3f3f44;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* js event part */
+    .point {
+        border: 2px solid #77cc6d;
+    }
+</style>
+
+<body>
+    <div class="main-wrap noto">
+        <main>
+            <form method="post" name="login-form" id="login-form" action="#">
+                <section class="section-header fs-30 p-b-32">
+                    <span>로그인</span>
+                </section>
+                <style>
+
+                </style>
+                <section class="section-id p-b-11">
+                    <div class="fs-16 p-b-6">
+                        <span>아이디</span>
+                    </div>
+                    <div>
+                        <input type="text" name="memID" id="memID" class="input-box p-l-15 p-r-15 fs-20 point"
+                            tabindex="1" required autofocus autocomplete="off" style="width:100%; height:55px;" />
+                    </div>
+                </section>
+                <section class="section-password p-b-11">
+                    <div class="fs-16 p-b-6">
+                        <span>비밀번호</span>
+                    </div>
+                    <div>
+                        <input type="password" name="memPwd" id="memPwd" class="input-box p-l-15 p-r-15 fs-20"
+                            tabindex="2" required style="width:100%; height:55px;" />
+                    </div>
+                </section>
+                <section class="section-features p-b-60" style="display: flex;justify-content: space-between;">
+                    <div>
+                        <input type="checkbox" class="m-r-5" style="position: relative; top: 3px;">
+                        <span>아이디 저장</span>
+                    </div>
+                    <div>
+                        <span><a href="#" class="blur-text">아이디</a></span>
+                        <span>⦁</span>
+                        <span><a href="#" class="blur-text">비밀번호 찾기</a></span>
+                    </div>
+                </section>
+                <section class="section-button" style="display: flex;justify-content: space-between;">
+                    <div>
+                        <button type="submit" name="btnLogin" id="btnLogin" class="custom-btn">로그인</button>
+                    </div>
+                    <div>
+                        <button type="button" name="btnReg" id="btnReg" class="custom-btn" onclick="location.href = '#'"
+                            style="background-color: #333;">회원가입</button>
+                    </div>
+                </section>
+            </form>
+        </main>
+        
+    </div>
+    <footer>
+        <div class="footer-copy p-t-10 p-b-10">
+            <span>&copy;Copyright 2022. All Rights Reserved.</span>
+        </div>
+    </footer>
+</body>
+<script>
+    // input focus UI
+    $(function () {
+        $(".input-box").focus(function () { // ON
+            $(this).addClass('point');
+        });
+
+        $(".input-box").blur(function () { // OFF
+            $(this).removeClass('point');
+        });
+    })
+</script>
+
+</html>
