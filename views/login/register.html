@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>groupware/register</title>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/common.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    /* Hide Scroll Bar (footer-copyright) */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-wrap {
+        background-color: #EBEBEB;
+        width: 100%;
+        height: 100vh;
+    }
+
+    main {
+        background-color: #fff;
+        width: 560px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 55px 85px;
+    }
+
+    form {
+        width: 100%;
+        height: 100%;
+    }
+
+    .custom-btn {
+        width: 150px;
+        height: 55px;
+        background-color: #3699ff;
+        color: #fff;
+        border-radius: 27px;
+        font-size: 16px;
+    }
+
+    .custom-btn:hover {
+        font-weight: 700;
+    }
+
+    .input-box {
+        border: 1px solid #d5d5d5;
+    }
+
+    .blur-text {
+        color: #777;
+    }
+
+    .blur-text:hover {
+        color: #000;
+        font-weight: 500;
+    }
+
+    .footer-copy {
+        color: #fff;
+        background-color: #3f3f44;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* js event part */
+    .border-point {
+        border: 2px solid #77cc6d;
+    }
+
+    .color-red {
+        color: red;
+    }
+
+    .color-green {
+        color: #77cc6d;
+    }
+</style>
+
+<body>
+    <div class="main-wrap noto">
+        <main>
+            <form method="post" name="login-form" id="login-form" action="#">
+
+                <section class="section-header fs-30 p-b-32">
+                    <span>회원가입</span>
+                </section>
+
+                <section class="section-id p-b-11">
+                    <div class="fs-16 p-b-6" style="display: flex;justify-content: space-between;">
+                        <div>
+                            <span>아이디</span>
+                        </div>
+                    </div>
+                    <div class="p-b-3">
+                        <input type="text" name="memID" id="memID" class="input-box p-l-15 p-r-15 fs-20 point"
+                            tabindex="1" required autofocus autocomplete="off" maxlength="20"
+                            style="width:100%; height:55px;" />
+                    </div>
+                    <div id="alertID" class="color-red" style="font-size: 14px;"></div>
+                </section>
+
+                <section class="section-password p-b-11">
+                    <div class="fs-16 p-b-6" style="display: flex;justify-content: space-between;">
+                        <div>
+                            <span>비밀번호</span>
+                        </div>
+                    </div>
+                    <div class="p-b-3">
+                        <input type="password" name="memPwd" id="memPwd" class="input-box p-l-15 p-r-15 fs-20 point"
+                            tabindex="1" required autocomplete="off" maxlength="20"
+                            style="width:100%; height:55px;" />
+                    </div>
+                    <div id="alertPwd" class="color-red" style="font-size: 14px;"></div>
+                </section>
+
+                <section class="section-password-check p-b-11">
+                    <div class="fs-16 p-b-6" style="display: flex;justify-content: space-between;">
+                        <div>
+                            <span>비밀번호 확인</span>
+                        </div>
+                    </div>
+                    <div class="p-b-3">
+                        <input type="password" name="memPwdChk" id="memPwdChk" class="input-box p-l-15 p-r-15 fs-20 point"
+                            tabindex="1" required autocomplete="off" maxlength="20"
+                            style="width:100%; height:55px;" />
+                    </div>
+                    <div id="alertPwdChk" class="color-red" style="font-size: 14px;"></div>
+                </section>
+
+                <section class="section-name p-b-11">
+                    <div class="fs-16 p-b-6" style="display: flex;justify-content: space-between;">
+                        <div>
+                            <span>이름</span>
+                        </div>
+                    </div>
+                    <div class="p-b-3">
+                        <input type="text" name="memName" id="memName" class="input-box p-l-15 p-r-15 fs-20 point"
+                            tabindex="4" required autocomplete="off" maxlength="40"
+                            style="width:100%; height:55px;" />
+                    </div>
+                    <div id="alertName" class="color-red" style="font-size: 14px;"></div>
+                </section>
+
+                <section class="section-email p-b-60">
+                    <div class="fs-16 p-b-6" style="display: flex;justify-content: space-between;">
+                        <div>
+                            <span>이메일</span>
+                        </div>
+                    </div>
+                    <div class="p-b-3">
+                        <input type="text" name="memEmail" id="memEmail" class="input-box p-l-15 p-r-15 fs-20 point"
+                            tabindex="5" required autocomplete="off" maxlength="100"
+                            style="width:100%; height:55px;" />
+                    </div>
+                    <div id="alertEmail" class="color-red" style="font-size: 14px;"></div>
+                </section>
+
+                <section class="section-button" style="display: flex;justify-content: space-between;">
+                    <div>
+                        <button type="submit" name="btnReg" id="btnReg" class="custom-btn">회원가입</button>
+                    </div>
+                    <div>
+                        <button type="button" class="custom-btn" onclick="location.href = 'login.html'"
+                            style="background-color: #333;">로그인화면</button>
+                    </div>
+                </section>
+
+            </form>
+        </main>
+
+    </div>
+    <footer>
+        <div class="footer-copy p-t-10 p-b-10">
+            <span>&copy;Copyright 2022. All Rights Reserved.</span>
+        </div>
+    </footer>
+</body>
+<script>
+    /* input focus UI */
+    $(function () {
+        $('.input-box').focus(function () { // ON
+            $(this).addClass('border-point');
+        });
+
+        $('.input-box').blur(function () { // OFF
+            $(this).removeClass('border-point');
+        });
+    })
+
+    /* validation */
+    $(function () {
+        // #아이디
+        // 아이디 양식 : 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다./^[a-z0-9_-]{5,20}$/
+        $('#memID').blur(function () {
+            const idRegex = /^[a-z0-9_-]{5,20}$/;
+            const memIDVal = $('#memID').val();
+
+            // 공백 시
+            if (memIDVal == "") {
+                $('#alertID').text("필수 정보입니다.");
+                return;
+            }
+
+            // 아이디 양식 비교
+            if (idRegex.test(memIDVal)) {
+                if(false) {
+                    // TODO: db 연결 시 중복아이디 체크
+                    $('#alertID').text("이미 사용중인 아이디입니다.");
+                    return;
+                }
+
+                $('#alertID').text("사용할 수 있는 아이디입니다.");
+                $('#alertID').removeClass('color-red');
+                $('#alertID').addClass('color-green');
+            } else {
+                $('#alertID').text("5~20자의 영문 소문자, 숫자와\n 특수기호(_),(-)만 사용 가능합니다.");
+                $('#alertID').removeClass('color-green');
+                $('#alertID').addClass('color-red');
+            }
+        });
+
+        // #비밀번호
+        // 비밀번호 양식 : 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요./^[A-Za-z0-9~!@#$%^&*()_-]{8,16}$/
+        $('#memPwd').blur(function () {
+            // TODO: regex - 영문 대 소문자, 숫자, 특수문자를 하나 이상 사용해야되게 변경
+            const pwdRegex = /^[A-Za-z0-9~!@#$%^&*()_-]{8,16}$/;
+            const memPwdVal = $('#memPwd').val();
+
+            // 공백 시
+            if (memPwdVal == "") {
+                $('#alertPwd').text("필수 정보입니다.");
+                return;
+            }
+
+            // 비밀번호 양식 비교
+            if (pwdRegex.test(memPwdVal)) {
+                $('#alertPwd').text("안전한 비밀번호입니다.");
+                $('#alertPwd').removeClass('color-red');
+                $('#alertPwd').addClass('color-green');
+            } else {
+                $('#alertPwd').text("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+                $('#alertPwd').removeClass('color-green');
+                $('#alertPwd').addClass('color-red');
+            }
+        });
+
+        // #비밀번호 비교
+        $('#memPwdChk').blur(function () {
+            const memPwdVal = $('#memPwd').val();
+            const memPwdChkVal = $('#memPwdChk').val();
+
+            // 공백 시
+            if (memPwdVal == "") {
+                $('#alertPwdChk').text("필수 정보입니다.");
+                return;
+            }
+
+            // 비밀번호 비교
+            if (memPwdVal == memPwdChkVal) {
+                $('#alertPwdChk').text("비밀번호가 일치합니다.");
+                $('#alertPwdChk').removeClass('color-red');
+                $('#alertPwdChk').addClass('color-green');
+            } else {
+                $('#alertPwdChk').text("비밀번호가 일치하지 않습니다.");
+                $('#alertPwdChk').removeClass('color-green');
+                $('#alertPwdChk').addClass('color-red');
+            }
+        });
+
+        // #이름
+        // 한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)/^[A-Za-z가-힣]{2,}$/
+        $('#memName').blur(function () {
+            const nameRegex = /^[A-Za-z가-힣]{2,}$/;
+            const memNameVal = $('#memName').val();
+
+            // 공백 시
+            if (memNameVal == "") {
+                $('#alertName').text("필수 정보입니다.");
+                return;
+            }
+
+            // 이름 양식 비교
+            if (nameRegex.test(memNameVal)) {
+                $('#alertName').text("사용할 수 있는 이름입니다.");
+                $('#alertName').removeClass('color-red');
+                $('#alertName').addClass('color-green');
+            } else {
+                if($('#memName').val().length === 1) {
+                    $('#alertName').text("2글자 이상 입력해주세요.");
+                    $('#alertName').removeClass('color-green');
+                    $('#alertName').addClass('color-red');
+                    return;
+                }
+                $('#alertName').text("한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)");
+                $('#alertName').removeClass('color-green');
+                $('#alertName').addClass('color-red');
+            }
+        });
+
+        // #이메일
+        // 이메일 주소를 다시 확인해주세요./^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        $('#memEmail').blur(function () {
+            const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            const memEmailVal = $('#memEmail').val();
+
+            // 공백 시
+            if (memEmailVal == "") {
+                $('#alertEmail').text("필수 정보입니다.");
+                return;
+            }
+
+            // 이름 양식 비교
+            if (emailRegex.test(memEmailVal)) {
+                $('#alertEmail').text("사용할 수 있는 이메일 주소입니다.");
+                $('#alertEmail').removeClass('color-red');
+                $('#alertEmail').addClass('color-green');
+            } else {
+                $('#alertEmail').text("이메일 주소를 다시 확인해주세요.");
+                $('#alertEmail').removeClass('color-green');
+                $('#alertEmail').addClass('color-red');
+            }
+        });
+    });
+</script>
+
+</html>
