@@ -1,3 +1,5 @@
+<!-- fixed menu / main section 구현 완료 -->
+<!-- main요소는 다른 것 부터 하고 진행예정 -->
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -23,7 +25,7 @@
         width: 100%;
         height: 65px;
 
-        /* background-color: red; */
+        background-color: #fff;
 
         display: flex;
     }
@@ -126,13 +128,65 @@
         background-color: #181824;
     }
 
+    .accordion-content a {
+        color: #999;
+    }
+
+    .accordion-content a:hover {
+        color: #fff;
+    }
+
+    /* TODO: css생성자?로 hover시 아이콘만 파란색으로 바뀌게 설정 */
+    /* .accordion-content a:hover .accordion-icon {
+            color:#3699ff;
+        } */
+
+    .accordion-menu {
+        width: 100%;
+        line-height: 16px;
+        margin-top: 20px;
+        font-size: 16px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .accordion-menu:hover {
+        color: #fff;
+    }
+
+    .accordion-icon {
+        width: 40px;
+        text-align: center;
+    }
+
+    .accordion-subject {
+        width: 160px;
+    }
+
+    .accordion-content {
+        /* width:100%; */
+        padding-top: 5px;
+        padding-left: 40px;
+        font-size: 14px;
+        line-height: 25px;
+    }
+
     main {
         width: calc(100% - 200px);
         min-height: calc(100vh - 65px);
         margin-top: 65px;
         margin-left: 200px;
+        padding: 20px 30px;
 
         background-color: #eef0f8;
+    }
+
+    main section {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px 30px;
     }
 
     footer {
@@ -140,11 +194,134 @@
         height: 40px;
         margin-left: 200px;
 
-        background-color: aqua;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+
+        background-color: #3f3f44;
+    }
+</style>
+<style>
+    .alert-box {
+        width: 300px;
+        position: fixed;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        top: 70px;
+        left: 220px;
+        padding: 10px;
+
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.1s;
+
+        z-index: 9999;
+    }
+
+    .alert-box-title {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+    }
+
+    .alert-box-list {
+        padding: 15px 0px 0px;
+    }
+
+    .alert-box-section {
+        line-height: 18px;
+        margin-bottom: 5px;
+        display: flex;
+        margin-bottom: 10px;
+        /* color: #3699ff !important; */
+    }
+
+    /* TODO: alert-box-section hover시 icon만 #3699ff로 color 변경 & 글자는 weight */
+    /* .alert-box-section:hover {
+        color: #3699ff!important;
+    } */
+
+    .alert-box-icon {
+        font-size: 38px;
+        padding-right: 10px;
+        color: #ccc;
+    }
+
+    .alert-box-contents {
+        color: #555;
+    }
+
+    /* ///////////////////// */
+
+    .config-box {
+        width: 100px;
+        position: fixed;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        top: 63px;
+        right: 130px;
+        padding: 10px;
+
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.1s;
+
+        z-index: 9999;
+    }
+
+    .config-box-list {
+        padding: 5px;
+    }
+
+    .config-box-list ul li a:hover {
+        font-weight: 700;
     }
 </style>
 
 <body class="noto">
+    <div class="alert-box">
+        <div class="alert-box-title">
+            알림
+        </div>
+        <div class="alert-box-list">
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="config-box">
+        <div class="config-box-list">
+            <ul>
+                <li><a href="#">다크모드</a></li>
+                <li><a href="#">알림설정</a></li>
+            </ul>
+        </div>
+    </div>
     <header>
         <div class="header-logo roboto">
             <span>Portfolio</span>
@@ -173,7 +350,7 @@
                 <div class="header-part-a" onclick="location.href = '#'">
                     내정보
                 </div>
-                <div class="header-part-a" onclick="location.href = '#'">
+                <div class="header-part-a header-part-config" onclick="location.href = '#'">
                     환경설정
                 </div>
                 <!-- <div class="header-division"></div> -->
@@ -183,31 +360,16 @@
             </div>
         </div>
     </header>
-    <!-- TODO: nav / ui조정 -->
-    <style>
-        .accordion-content a {
-            color: #fff;
-        }
-
-        .accordion-menu {
-            width: 100%;
-            height: 20px;
-            line-height: 16px;
-            /* padding: 0 10px; */
-            /* margin-bottom: 10px; */
-            font-size: 16px;
-        }
-
-        .accordion-content {
-            /* width:100%; */
-            padding-left: 20px;
-        }
-    </style>
     <nav>
-        <div class="accordion" style="color:#fff">
+        <div class="accordion" style="color:#999">
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>사내조직/연락처</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-book"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>사내조직/연락처</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -218,7 +380,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>전자결재</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-stamp"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>전자결재</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -231,7 +398,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>메일</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>메일</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -249,7 +421,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>게시판</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-table"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>게시판</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -268,7 +445,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>예약</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-clock"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>예약</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -279,7 +461,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>일정관리</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-calendar-day"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>일정관리</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -290,7 +477,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>근태관리</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-briefcase"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>근태관리</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -302,7 +494,12 @@
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>설문조사</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-chart-pie"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>설문조사</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
@@ -313,80 +510,38 @@
                 </div>
             </div>
             <div class="accordion-box">
-                <div class="accordion-menu pointer">
-                    <span>ToDo+</span>
+                <div class="accordion-menu pointer" onclick="location.href='#'">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-check-square"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>ToDo+</span>
+                    </div>
                 </div>
             </div>
             <div class="accordion-box">
                 <div class="accordion-menu pointer">
-                    <span>회사기본정보</span>
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-asterisk"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>회사정보</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <ul>
-                        <li><a href="#">회사정보</a></li>
+                        <li><a href="#">회사기본정보</a></li>
                         <li><a href="#">DB</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <script>
-        $(function () {
-            $('.accordion-content').hide();
-            $('.accordion-menu').click(function () {
-                if ($(this).hasClass('active')) {
-                    $(this).next().slideUp(50);
-                    $(this).removeClass('active');
-                } else {
-                    $('.accordion').find('.active').next().slideUp(50);
-                    $('.accordion').find('.active').removeClass('active');
-                    $(this).next().slideDown(50);
-                    $(this).addClass('active');
-                }
-
-            });
-        })
-    </script>
     <main>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis deleniti veritatis natus eum explicabo, quos
-        necessitatibus quaerat rem libero, accusantium animi architecto nam id dicta accusamus. Illum deleniti earum
-        iste velit. Aspernatur ducimus nemo cupiditate rem corporis placeat in dolorem libero mollitia perspiciatis,
-        voluptas saepe quasi debitis consectetur. Molestiae vitae corporis saepe sit non quidem similique, unde
-        corrupti, consectetur ducimus eius. Optio exercitationem voluptate nihil obcaecati. Hic non molestiae at vero
-        eius, maxime saepe, neque provident reprehenderit aut architecto? Ea facere deserunt sit sed, voluptatum fugiat
-        tempora cupiditate totam, deleniti accusamus labore magnam quo alias animi non repellendus quos nostrum
-        laboriosam maxime, dolor doloremque aliquam recusandae voluptates autem. Optio rerum vero maxime qui molestiae
-        soluta, itaque minus repellat pariatur hic cum deserunt provident odio impedit dolore! Nam rem incidunt
-        voluptatibus quidem consequuntur esse molestiae tempore perferendis dolores! Beatae quasi eligendi repellendus
-        aspernatur deserunt at nemo veniam illo molestias quos fuga rerum quia rem dolorem, modi dignissimos excepturi
-        maxime architecto. Natus deserunt error ea quasi corporis quod laudantium officiis molestias vero aut suscipit
-        voluptas iste aliquam voluptate exercitationem id, dolor distinctio ut deleniti corrupti fugiat velit rem!
-        Dolores natus delectus expedita autem, voluptates illo odio aspernatur itaque fugiat. Et dolores aliquid sit
-        officia. Eaque sequi quae laborum sunt dolores debitis facere! Esse dolorem, error, ipsam voluptatem dolores
-        mollitia reprehenderit qui in aspernatur veniam aliquam eius eligendi tempore consequuntur quas magnam harum
-        sint beatae soluta dicta, autem quis quaerat corrupti voluptate? Dolore, dignissimos voluptatibus? Mollitia
-        nostrum ducimus nemo harum, rerum, quia maiores officiis provident beatae ipsam esse itaque, perferendis dolorem
-        tenetur suscipit reprehenderit autem doloribus eius illum. Nam quos cumque maiores odio aliquid possimus
-        sapiente iste tempora dignissimos eaque, quidem doloremque quis deserunt itaque nesciunt culpa molestias
-        aspernatur esse tempore nihil ullam, magni veniam. Quibusdam inventore, deleniti repellat pariatur voluptatibus
-        ducimus. Culpa repudiandae voluptatibus facere, similique in ipsam molestiae. Repellendus voluptate saepe minus
-        sequi, alias iusto illum nemo dolor odit nam atque maiores laudantium excepturi repudiandae recusandae doloribus
-        perspiciatis eaque placeat autem, quasi aut at incidunt blanditiis delectus. Neque itaque tempore adipisci, rem
-        possimus nostrum suscipit rerum inventore! Voluptatibus asperiores maxime velit et? Rem natus cupiditate rerum
-        explicabo numquam, eaque ad quasi nihil illum in tempore dolore commodi maiores voluptatibus nobis magnam
-        asperiores nisi quae est. Ducimus nam dolor, hic enim voluptas incidunt omnis distinctio, soluta rerum rem
-        obcaecati ut tenetur dolorum ipsam reiciendis quidem numquam laudantium deserunt totam consectetur? Temporibus,
-        quae non! Et explicabo corrupti sapiente quisquam libero nam, rem quam nemo inventore iusto error doloremque at
-        voluptatum ducimus id omnis perferendis? Deserunt natus atque quod? Suscipit veniam obcaecati nostrum, a impedit
-        iure pariatur corporis deserunt rerum, illo cum maxime soluta quasi velit voluptatibus, esse aperiam nobis
-        cumque? Ex voluptatibus laborum ipsam rerum quam, dolor laudantium omnis nihil perspiciatis consequuntur quos
-        cumque est illo magni. Aliquid odio aut expedita accusantium pariatur repellendus ducimus dolore voluptatum
-        voluptates in laborum, maxime, laboriosam a necessitatibus molestias. Dignissimos, autem deserunt maxime sint,
-        voluptatem sunt, debitis optio voluptatibus recusandae cumque ab nihil quaerat cum hic necessitatibus.
+        <section></section>
     </main>
     <footer>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quo, commodi, inventore aliquid fugit esse ea
-        hic autem perferendis voluptates dolorem corporis, vero magnam enim natus deleniti porro incidunt laboriosam.
+        <span>&copy;Copyright 2022. All Rights Reserved.</span>
     </footer>
 </body>
 <script>
@@ -402,6 +557,7 @@
         }, 1900);
     }
 
+    /* top bell-icon hover event */
     $(function () {
         $('.bell-icon').mouseover(function () {
             $('.bell-icon').css('color', '#3699ff');
@@ -414,6 +570,85 @@
         });
         $('.header-alert-badge').mouseout(function () {
             $('.bell-icon').css('color', '#ccc');
+        });
+    });
+
+    /* accordian menu event */
+    $(function () {
+        $('.accordion-content').hide();
+        $('.accordion-menu').click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).next().slideUp(50);
+                $(this).removeClass('active');
+            } else {
+                $('.accordion').find('.active').next().slideUp(50);
+                $('.accordion').find('.active').removeClass('active');
+                $(this).next().slideDown(50);
+                $(this).addClass('active');
+            }
+        });
+    })
+
+    /* alert-box popup event */
+    function alertBoxOn() {
+        $('.alert-box').css('visibility', 'visible');
+        $('.alert-box').css('opacity', '1');
+        setTimeout(() => { // 이 기능을 넣지 않으면 alert-box가 열렸다가 바로 닫힘
+            $('.alert-box').addClass('alert-popup')
+        }, 10);
+    }
+
+    function alertBoxOff() {
+        $('.alert-box').css('visibility', 'hidden');
+        $('.alert-box').css('opacity', '0');
+        $('.alert-box').removeClass('alert-popup')
+    }
+    $(function () {
+        $('.bell-icon, .header-alert-badge').click(function () { // bell-icon
+            if ($('.alert-box').hasClass('alert-popup')) {
+                alertBoxOff();
+            } else {
+                alertBoxOn();
+            }
+        });
+
+        $('html').click(function (e) { // alert-box외 구역 클릭
+            if ($(e.target).parents('.alert-popup').length < 1 && $('.alert-box').hasClass('alert-popup')) {
+                // console.log('팝업 외 부분이 맞습니다')
+                alertBoxOff();
+            }
+        });
+    });
+
+    /* config-box popup event */
+    function configBoxOn() {
+        console.log("??");
+        $('.config-box').css('visibility', 'visible');
+        $('.config-box').css('opacity', '1');
+        setTimeout(() => { // 이 기능을 넣지 않으면 config-box가 열렸다가 바로 닫힘
+            $('.config-box').addClass('config-popup')
+        }, 10);
+    }
+
+    function configBoxOff() {
+        $('.config-box').css('visibility', 'hidden');
+        $('.config-box').css('opacity', '0');
+        $('.config-box').removeClass('config-popup')
+    }
+    $(function () {
+        $('.header-part-config').click(function () { // bell-icon
+            if ($('.config-box').hasClass('config-popup')) {
+                configBoxOff();
+            } else {
+                configBoxOn();
+            }
+        });
+
+        $('html').click(function (e) { // config-box외 구역 클릭
+            if ($(e.target).parents('.config-popup').length < 1 && $('.config-box').hasClass('config-popup')) {
+                // console.log('팝업 외 부분이 맞습니다')
+                configBoxOff();
+            }
         });
     });
 </script>
