@@ -1,3 +1,4 @@
+/* 사용 대기중 */
 function blinkBell() {
     const blinkEvt = setInterval(function () {
         $(".header-alert-icon").toggleClass('bell-gray');
@@ -28,6 +29,7 @@ $(function () {
 
 /* accordian menu event */
 $(function() {
+    // TODO: hide로 감추지 말고 content박스 자체에 display:none을 주거나하자 (페이지 새로고침시 깜빡거림)
     $('.accordion-content').hide();
     $('.accordion-menu').click(function () {
         if ($(this).hasClass('active')) {
