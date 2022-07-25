@@ -1096,7 +1096,7 @@ button {
     text-align: center;
     line-height: 34px;
     border-radius:2px;
-    background-color:#43AEE0;
+    background-color:#3699ff;
     border:1px solid transparent;
     color:#fff;
 }
@@ -1214,16 +1214,10 @@ input {
     font-size:12px;
 }
 
+.input
+
 /* TODO: select design update */
 /* select */
-.sel-attend {
-    font-size:12px;
-    border-radius: 2px;
-    border:1px solid #d5d5d5;
-    width:65px;
-    height:30px;
-}
-
 select {
     font-size:12px;
     border-radius: 2px;
@@ -1326,6 +1320,10 @@ td {
 
 .td-90 {
     width:90%;
+}
+
+.td-100 {
+    width:100%;
 }
 
 /* Page */
