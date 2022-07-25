@@ -350,6 +350,27 @@
             </div>
         </div>
     </nav>
+<<<<<<< HEAD
+=======
+    <style>
+        .sort-btn:hover {
+            font-weight: 700;
+            color: black;
+        }
+
+        /* js event part */
+        .sort-point {
+            border-bottom: 2px solid black;
+            font-weight: 700;
+            color: black !important;
+        }
+
+        .sort-btn {
+            margin-right: 10px;
+            color: #999;
+        }
+    </style>
+>>>>>>> origin/develop
     <main>
         <section>
             <div class="addr noto fs-18 m-b-20 flex flex-justify"
@@ -372,15 +393,13 @@
                         </select>
                         <input type="text" name="words" required style="margin-left:-2px" />
                         <button type="submit" class="btn-on noto fs-13" style="margin-left:-2px">회원검색</button>
-                        <button type="button" class="btn-on noto fs-13" style="margin-left:-2px"
-                            onclick="location.href='#'">초기화</button>
+                        <button type="button" class="btn-on noto fs-13" style="margin-left:-2px" onclick="location.href='#'">초기화</button>
                     </form>
                 </div>
             </div>
             <div class="func-grp2 m-b-5" style="display: flex;justify-content: space-between;">
                 <div>
-                    <button class="btn-tomato noto fs-13 m-l-3"
-                        onclick="alert('선택하신 정보를 삭제합니다.\n삭제 후에는 복원할 수 없습니다.');">선택삭제</button>
+                    <button class="btn-tomato noto fs-13 m-l-3" onclick="alert('선택하신 정보를 삭제합니다.\n삭제 후에는 복원할 수 없습니다.');">선택삭제</button>
                 </div>
                 <div style="display: flex;">
                     <div class="sort-btn pointer sort-point">전체</div>
@@ -413,6 +432,34 @@
                     </div>
                 </div>
             </div>
+            <style>
+                table tr:nth-child(2n-1) {
+                    background-color: #f2f2f2;
+                }
+
+                table tr:nth-child(2n) {
+                    background-color: #fafafa;
+                }
+
+                table tr:first-child {
+                    background-color: #5f7faf;
+                }
+
+                tr {
+                    height: 50px;
+                }
+
+                /* table 선색 */
+                td {
+                    border: 1px solid #e3e7ee;
+                    border-left: none;
+                    border-right: none;
+                }
+
+                table tr:last-child td {
+                    border-bottom: 2px solid #e3e7ee;
+                }
+            </style>
             <div>
                 <table>
                     <tr class="center tr-color ffff fs-16 weight500" style="color:#fff">
@@ -504,5 +551,4 @@
 </body>
 <script src="../../js/fixed_menu.js"></script>
 <script src="../../js/chk-all.js"></script>
-
 </html>
