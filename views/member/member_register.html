@@ -1,0 +1,553 @@
+<!-- TODO:  -->
+<!-- 페이지 접속 시 정보가 있다면 미리입력 -->
+<!-- 사진 올리기 -->
+<!-- form -->
+<!-- 새로고침 / 확인하고 진행 -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member_register</title>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/fixed_menu.css">
+
+    <script src="https://kit.fontawesome.com/5ae11af4f3.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../ckeditor/ckeditor.js"></script>
+</head>
+
+<style>
+    main {
+        width: calc(100% - 200px);
+        min-height: calc(100vh - 65px);
+        margin-top: 65px;
+        margin-left: 200px;
+        padding: 20px 30px;
+
+        background-color: #eef0f8;
+    }
+
+    main section {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px 30px;
+    }
+
+    td {
+        padding: 2px;
+    }
+
+    .input-80 {
+        padding: 5px;
+        border-radius: 2px;
+        border: 1px solid #d5d5d5;
+        width: 80px;
+        height: 35px;
+        font-size: 12px;
+    }
+</style>
+
+<body class="noto">
+    <div class="alert-box">
+        <div class="alert-box-title">
+            알림
+        </div>
+        <div class="alert-box-list">
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="config-box">
+        <div class="config-box-list">
+            <ul>
+                <li><a href="#">다크모드</a></li>
+                <li><a href="#">알림설정</a></li>
+            </ul>
+        </div>
+    </div>
+    <header>
+        <div class="header-logo roboto">
+            <span><a href="#">Portfolio</a></span>
+        </div>
+        <div class="header-bar">
+            <div class="header-alert">
+                <div class="header-alert-icon bell-gray">
+                    <span class="bell-icon pointer"><i class="fas fa-bell"></i></span>
+                </div>
+                <div class="header-alert-badge pointer">
+                    <span><b>6</b></span>
+                </div>
+                <div class="header-alert-text">
+                    <!-- <span><b>아무개</b></span><span>님이 새로운 메세지를 보냈습니다.</span> -->
+                    <!-- <button type="button" onclick="blinkBell();">test</button> -->
+                </div>
+            </div>
+            <div class="header-menu" style="display: flex;justify-content: space-between;">
+                <div class="header-part">
+                    <span>홍길동</span>
+                    <span>-</span>
+                    <span>접속권한 </span>
+                    <span>n등급</span>
+                </div>
+                <div class="header-division"></div>
+                <div class="header-part-a" onclick="location.href = '#'">
+                    내정보
+                </div>
+                <div class="header-part-a header-part-config" onclick="location.href = '#'">
+                    환경설정
+                </div>
+                <!-- <div class="header-division"></div> -->
+                <div class="header-part-a" onclick="location.href = '#'">
+                    로그아웃
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="accordion" style="color:#999">
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-book"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>사내조직/연락처</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">사원 목록</a></li>
+                        <li><a href="#">조직도</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-stamp"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>전자결재</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">전자결재홈</a></li>
+                        <li><a href="#">새결재진행</a></li>
+                        <li><a href="#">결재목록</a></li>
+                        <li><a href="#">완료문서</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>메일</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">새메일작성</a></li>
+                        <li><a href="#">받은메일함</a></li>
+                        <li><a href="#">보낸메일함</a></li>
+                        <li><a href="#">내게쓴메일함</a></li>
+                        <li><a href="#">중요메일함</a></li>
+                        <li><a href="#">예약메일함</a></li>
+                        <li><a href="#">임시보관함</a></li>
+                        <li><a href="#">삭제메일함</a></li>
+                        <li><a href="#">차단메일함</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-table"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>게시판</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">공통</a></li>
+                        <li><a href="#">개발</a></li>
+                        <li><a href="#">인사</a></li>
+                        <li><a href="#">회계</a></li>
+                        <li><a href="#">영업</a></li>
+                        <li><a href="#">자료실</a></li>
+                        <li><a href="#">자유게시판</a></li>
+                        <li><a href="#">익명게시판</a></li>
+                        <li><a href="#">게시판관리</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-clock"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>예약</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">회의실예약</a></li>
+                        <li><a href="#">차량예약</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-calendar-day"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>일정관리</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">일정목록</a></li>
+                        <li><a href="#">일정추가</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-briefcase"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>근태관리</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">내 근태현황</a></li>
+                        <li><a href="#">출퇴근현황</a></li>
+                        <li><a href="#">내 인사정보</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-chart-pie"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>설문조사</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">진행중인 설문</a></li>
+                        <li><a href="#">종료된 설문</a></li>
+                        <li><a href="#">내가 만든 설문</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer" onclick="location.href='#'">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-check-square"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>ToDo+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-asterisk"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>회사정보</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">회사기본정보</a></li>
+                        <li><a href="#">DB</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <form method="post" name="memRegisterFrm" id="memRegisterFrm" action="#">
+                <div class="addr fs-18 m-b-20" style="border-bottom: 1px solid #ccc;">
+                    <div>
+                        <span style="font-weight: 500;">사내조직/연락처</span><span> ⦁ 사원등록</span>
+                    </div>
+                </div>
+                <div class="m-b-20" style="display: flex;justify-content: space-between;">
+                    <div class="profile-box-wrap m-r-20">
+                        <div class="profile-box" style="border:2px solid #ccc;color:#999;width:200px; height:242px;">
+                            <div class="m-t-90 m-b-90 fs-14 p-l-20 p-r-20">
+                                <span>115~235px X 150~315px</span></br>
+                                <span>500KByte 이하, JPG 형식</span>
+                            </div>
+                        </div>
+                        <div class="profile-btn center m-t-5">
+                            <span class="s-btn-on">등록</span>
+                            <span class="s-btn-off">삭제</span>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="fs-14">
+                            <tr class="">
+                                <!-- TODO: 정보 불러와서 있는 정보는 미리 입력 후 변경금지 설정 (이름) -->
+                                <td class="td-8 center bg-eee center">사원명/성별</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" autofocus />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">남자</option>
+                                        <option value="">여자</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">생년월일</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">양력</option>
+                                        <option value="">음력</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">C.P</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">010</option>
+                                        <option value="">011</option>
+                                    </select>
+                                    <input type="text" name="" id="" class="input-80" />
+                                </td>
+                                <td class="td-7 center bg-eee">Tel.</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">02</option>
+                                        <option value="">051</option>
+                                    </select>
+                                    <input type="text" name="" id="" class="input-80" />
+                                </td>
+                                <td class="td-7 center bg-eee">내선번호</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-7 center bg-eee">채용형태</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-135">
+                                        <option value="">공개채용</option>
+                                        <option value="">특별채용</option>
+                                        <option value="">수시채용</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">희망직무</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">키/몸무게</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-70" style="width:42%;" placeholder="cm" />
+                                    <input type="text" name="" id="" class="input-70" style="width:42%;" placeholder="kg" />
+                                </td>
+                                <td class="td-7 center bg-eee">병역구분</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-135">
+                                        <option value="">병역필</option>
+                                        <option value="">병역미필</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">종교</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-135">
+                                        <option value="">무교</option>
+                                        <option value="">불교</option>
+                                        <option value="">기독교</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-7 center bg-eee">취미</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">특기</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">장애여부</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-135">
+                                        <option value="">비장애</option>
+                                        <option value="">장애</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">보훈대상여부</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-135">
+                                        <option value="">비대상</option>
+                                        <option value="">대상</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">결혼여부</td>
+                                <td class="td-13 center">
+                                    <select name="" id="" class="sel-135">
+                                        <option value="">미혼</option>
+                                        <option value="">기혼</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-7 center bg-eee">보유자격 1</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">보유자격 2</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">보유자격 3</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">보유자격 4</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">보유자격 5</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-7 center bg-eee">어학사항 1</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" autofocus />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">상</option>
+                                        <option value="">중</option>
+                                        <option value="">하</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">어학사항 2</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" autofocus />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">상</option>
+                                        <option value="">중</option>
+                                        <option value="">하</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">어학사항 3</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" autofocus />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">상</option>
+                                        <option value="">중</option>
+                                        <option value="">하</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">어학사항 4</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" autofocus />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">상</option>
+                                        <option value="">중</option>
+                                        <option value="">하</option>
+                                    </select>
+                                </td>
+                                <td class="td-7 center bg-eee">어학사항 5</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-80" autofocus />
+                                    <select name="" id="" class="sel-55">
+                                        <option value="">상</option>
+                                        <option value="">중</option>
+                                        <option value="">하</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-7 center bg-eee">상벌사항 1</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">상벌사항 2</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">상벌사항 3</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">상벌사항 4</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                                <td class="td-7 center bg-eee">상벌사항 5</td>
+                                <td class="td-13 center">
+                                    <input type="text" name="" id="" class="input-135" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p>추가 내용 작성</p>
+                <div class="content m-t-10 m-b-20">
+                    <textarea id="" name="" class="noto"
+                        style="min-width:100%;min-height:300px;max-width:100%;max-height:300px;border:1px solid #ccc;padding:10px;border-radius: 2px;"></textarea>
+                </div>
+                <div class="btn-grp center m-t10">
+                    <button type="submit" class="btn-normal">내용저장</button>
+                    <button type="reset" class="btn-red" onclick="confirm('정말 초기화 하시겠습니까?');">새로고침</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <span>&copy;Copyright 2022. All Rights Reserved.</span>
+    </footer>
+</body>
+<script src="../../js/fixed_menu.js"></script>
+
+</html>
