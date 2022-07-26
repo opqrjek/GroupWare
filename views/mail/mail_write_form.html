@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mail_write_form</title>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/fixed_menu.css">
+
+    <script src="https://kit.fontawesome.com/5ae11af4f3.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../ckeditor/ckeditor.js"></script>
+</head>
+
+<style>
+    main {
+        width: calc(100% - 200px);
+        min-height: calc(100vh - 65px);
+        margin-top: 65px;
+        margin-left: 200px;
+        padding: 20px 30px;
+
+        background-color: #eef0f8;
+    }
+
+    main section {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px 30px;
+    }
+
+    /* table css */
+    tr {
+        height: 40px;
+    }
+
+    .td-l {
+        border-left: 1px solid #d6dce7;
+    }
+
+    .td-r {
+        border-right: 1px solid #d6dce7;
+    }
+
+    /* table 선색 */
+    td {
+        border: 1px solid #e3e7ee;
+        border-left: none;
+        border-right: none;
+    }
+
+    .mail-title:hover {
+        font-weight: 700;
+    }
+
+    .input-form {
+        width: 100%;
+    }
+
+    /* 주소록 js part */
+    .active {
+        background-color: #eee;
+        font-weight: 700;
+    }
+</style>
+<!-- TODO: style 정리 -->
+<style>
+    .modal-wrap1 {
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+
+        z-index: 9999;
+    }
+
+    .modal-wrap1.open {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .modal1 {
+        /* width: 1700px; */
+        width: calc(100vw - 275px);
+        height: 900px;
+        position: absolute;
+        top: 85px;
+        left: 230px;
+        /* top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px 30px;
+
+        box-shadow:
+            -60px 0px 100px -90px #000,
+            60px 0px 100px -90px #000;
+    }
+
+    .close-preview:hover {
+        font-weight: 700;
+    }
+</style>
+<!-- TODO: script 정리 / 내부 정리 -->
+<script>
+    $(function () {
+        // $(".popup1").click(function () {
+        //     $(".modal-wrap1").toggleClass("open");
+        // });
+    })
+
+    /* config-box popup event */
+    $(function () {
+        $(".popup1").click(function () {
+            configBoxToggle();
+        });
+
+        $('html').click(function (e) { // config-box외 구역 클릭
+            if ($(e.target).parents('.open').length < 1 && $('.modal-wrap1').hasClass(
+                    'open')) {
+                // console.log('팝업 외 부분이 맞습니다')
+                configBoxToggle();
+            }
+        });
+    });
+
+    function configBoxToggle() {
+        setTimeout(() => { // 이 기능을 넣지 않으면 modal-wrap1이 열렸다가 바로 닫힘
+            $(".modal-wrap1").toggleClass("open");
+        }, 10);
+    }
+</script>
+
+<body class="noto">
+    <!-- modal1 -->
+    <div class="modal-wrap1">
+        <div class="modal1" style="border: 1px solid #777;">
+            <div class="addr noto fs-18 m-b-20"
+                style="border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;">
+                <div>
+                    <span style="font-weight: 500;">미리보기</span>
+                </div>
+                <div class="close-preview popup1 pointer fs-22"
+                    style="width:25px;height:25px;line-height: 20px;text-align: center;">x</div>
+            </div>
+            <div class="func-grp1 m-b-18">
+                <div>
+                    <button type="button" class="btn-off noto" style="cursor: unset;">답장</button>
+                    <button type="button" class="btn-off noto" style="cursor: unset;">전달</button>
+                    <button type="button" class="btn-off noto" style="cursor: unset;">삭제</button>
+                    <button type="button" class="btn-off noto" style="cursor: unset;">중요처리</button>
+                </div>
+            </div>
+            <div>
+                <table class="m-b-10">
+                    <tr class="center fs-14" style="font-weight: 500;">
+                        <td class="td-5">발신자</td>
+                        <td class="td-5">
+
+                        </td>
+                        <td style="text-align: left;">
+                            <span>개발팀</span>
+                            <span> 사원</span>
+                            <span>/ 홍길동</span>
+                        </td>
+                        <td class="td-5">
+                            07/26 12:13
+                        </td>
+                    </tr>
+                    <tr class="center fs-14" style="font-weight: 500;">
+                        <td>제목</td>
+                        <td></td>
+                        <td style="text-align: left;">
+                            미리보기 제목입니다.
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="center fs-14" style="font-weight: 500;">
+                        <td>
+                            <div>첨부파일</div>
+                        </td>
+                        <td style="line-height: 0;">
+
+                        </td>
+                        <td style="text-align: left;">
+                            첨부파일.txt
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="center fs-14" style="font-weight: 500;">
+                        <td colspan="4" id="previewContents" style="text-align: left;padding:20px 0;">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- modal1// -->
+    <div class="alert-box">
+        <div class="alert-box-title">
+            알림
+        </div>
+        <div class="alert-box-list">
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="config-box">
+        <div class="config-box-list">
+            <ul>
+                <li><a href="#">다크모드</a></li>
+                <li><a href="#">알림설정</a></li>
+            </ul>
+        </div>
+    </div>
+    <header>
+        <div class="header-logo roboto">
+            <span><a href="#">Portfolio</a></span>
+        </div>
+        <div class="header-bar">
+            <div class="header-alert">
+                <div class="header-alert-icon bell-gray">
+                    <span class="bell-icon pointer"><i class="fas fa-bell"></i></span>
+                </div>
+                <div class="header-alert-badge pointer">
+                    <span><b>6</b></span>
+                </div>
+                <div class="header-alert-text">
+                    <!-- <span><b>아무개</b></span><span>님이 새로운 메세지를 보냈습니다.</span> -->
+                    <!-- <button type="button" onclick="blinkBell();">test</button> -->
+                </div>
+            </div>
+            <div class="header-menu" style="display: flex;justify-content: space-between;">
+                <div class="header-part">
+                    <span>홍길동</span>
+                    <span>-</span>
+                    <span>접속권한 </span>
+                    <span>n등급</span>
+                </div>
+                <div class="header-division"></div>
+                <div class="header-part-a" onclick="location.href = '#'">
+                    내정보
+                </div>
+                <div class="header-part-a header-part-config" onclick="location.href = '#'">
+                    환경설정
+                </div>
+                <!-- <div class="header-division"></div> -->
+                <div class="header-part-a" onclick="location.href = '#'">
+                    로그아웃
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="accordion" style="color:#999">
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-book"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>사내조직/연락처</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">사원 목록</a></li>
+                        <li><a href="#">조직도</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-stamp"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>전자결재</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">전자결재홈</a></li>
+                        <li><a href="#">새결재진행</a></li>
+                        <li><a href="#">결재목록</a></li>
+                        <li><a href="#">완료문서</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>메일</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">새메일작성</a></li>
+                        <li><a href="#">받은메일함</a></li>
+                        <li><a href="#">보낸메일함</a></li>
+                        <li><a href="#">내게쓴메일함</a></li>
+                        <li><a href="#">중요메일함</a></li>
+                        <li><a href="#">예약메일함</a></li>
+                        <li><a href="#">임시보관함</a></li>
+                        <li><a href="#">삭제메일함</a></li>
+                        <li><a href="#">차단메일함</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-table"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>게시판</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">공통</a></li>
+                        <li><a href="#">개발</a></li>
+                        <li><a href="#">인사</a></li>
+                        <li><a href="#">회계</a></li>
+                        <li><a href="#">영업</a></li>
+                        <li><a href="#">자료실</a></li>
+                        <li><a href="#">자유게시판</a></li>
+                        <li><a href="#">익명게시판</a></li>
+                        <li><a href="#">게시판관리</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-clock"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>예약</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">회의실예약</a></li>
+                        <li><a href="#">차량예약</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-calendar-day"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>일정관리</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">일정목록</a></li>
+                        <li><a href="#">일정추가</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-briefcase"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>근태관리</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">내 근태현황</a></li>
+                        <li><a href="#">출퇴근현황</a></li>
+                        <li><a href="#">내 인사정보</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-chart-pie"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>설문조사</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">진행중인 설문</a></li>
+                        <li><a href="#">종료된 설문</a></li>
+                        <li><a href="#">내가 만든 설문</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer" onclick="location.href='#'">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-check-square"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>ToDo+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-asterisk"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>회사정보</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">회사기본정보</a></li>
+                        <li><a href="#">DB</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <form method="post" name="mailForm" id="mailForm" action="#">
+                <div class="addr noto fs-18 m-b-20" style="border-bottom: 1px solid #ccc;">
+                    <div>
+                        <span style="font-weight: 500;">메일</span><span> ⦁ 메일작성</span>
+                    </div>
+                </div>
+                <div class="func-grp1 m-b-18" style="display: flex;justify-content: space-between;">
+                    <div>
+                        <button type="button" class="btn-off noto popup1" onclick="previewContents();">미리보기</button>
+                        <button type="button" class="btn-off noto">임시저장</button>
+                        <button type="button" class="btn-off noto">예약발송</button>
+                    </div>
+                    <div class="search-grp">
+                        <button type="button" class="btn-tomato noto">보내기</button>
+                    </div>
+                </div>
+                <div>
+                    <table class="m-b-10">
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <!-- TODO: maxlength 설정 -->
+                            <!-- TODO: 수신자 UI 설정 ([@이름] 주위로 직사각형 박스에 border radius 넣어서 블럭형태로) -->
+                            <!-- TODO: 긴급 UI 설정 (제목 앞에 [긴급]빨간색으로 넣기) -->
+                            <!-- TODO: 첨부파일 잘 들어가는지 확인 -->
+                            <!-- TODO: 댓글쪽 기능 필요한 거 있으면 CKEditor 아래로 추가해보자 -->
+                            <td class="td-5">받는사람</td>
+                            <td class="td-5">
+                                <span class="btn-gray popup2 pointer" style="color:#555;">주소록</span>
+                            </td>
+                            <td class="">
+                                <input id="input-reg" class="input-form" type="text" value="" required
+                                    autocomplete="off">
+                            </td>
+                            <td class="td-5">
+                                긴급
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td>제목</td>
+                            <td></td>
+                            <td>
+                                <!-- TODO: maxlength 설정 -->
+                                <input id="title_popup" class="input-form" type="text" required autocomplete="off">
+                            </td>
+                            <td>
+                                일괄전송
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td>
+                                <div>첨부파일</div>
+                            </td>
+                            <td style="line-height: 0;">
+
+                            </td>
+                            <td>
+                                <input class="input-form" type="file" multiple />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td>내용</td>
+                            <td></td>
+                            <td>
+                                <div class="content">
+                                    <textarea id="editor1" name=""
+                                        style="width:100%;height:300px;border:1px solid #ccc;padding:10px;border-radius: 2px;"
+                                        class="noto" required></textarea>
+                                    <script>
+                                        CKEDITOR.replace('editor1');
+                                        CKEDITOR.config.height = 428;
+                                    </script>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <!-- <button class="btn-off" onclick="testFn();">TEST</button>
+            <button class="btn-off" onclick="testFn2();">TEST2</button> -->
+        </section>
+    </main>
+    <footer>
+        <span>&copy;Copyright 2022. All Rights Reserved.</span>
+    </footer>
+</body>
+<script src="../../js/fixed_menu.js"></script>
+<script src="../../js/chk-all.js"></script>
+<script>
+    // function testFn() {
+    //     const content = CKEDITOR.instances.editor1.getData();
+    //     alert(content);
+    // }
+
+    // function testFn2() {
+    //     const bigText = '';
+    //     const exText = '<p>사용자의 요구는 변경되거나 추가되기 일쑤다. 지나치게 범용화, 공통화, 오브젝트화 해버리면 수정 시 문제가 생긴다. 의뢰한 고객은 높은 응용성을 갖춘 프로그램을 요구한다.</p><p>프로그래머로서 중요한 점은 의뢰한 고객의 문제를 해결할 수 있느냐 없느냐 입니다. 프로그래머의 자기만족이 중요한 것이 아니다.</p><ul><li>요구 사항을 확실히 이해할 것</li><li>지나치게 공들이지 말고 유연하게 제작할 것</li><li>신속하면서 높은 품질을 유지할 것</li></ul><p>&lsquo;어설픈 상태에서 공개하는 것은 쑥스럽다&rsquo; 다른사람 입장에서는 허울 좋은 소리에 불과하다. &rsquo;어중간한 상태에서는 아직 보고 싶지 않다.&rsquo;는 말을 한 고객은 없다.</p><p>문제를 해결할 수 있느냐 없느냐가 우선시 된다.</p>';
+    //     const content2 = CKEDITOR.instances.editor1.setData(exText);
+    //     $(function() {
+    //         $('#previewContents').html(exText);
+    //     });
+    // }
+
+    /* popup preview content event */
+    function previewContents() {
+        const content = CKEDITOR.instances.editor1.getData();
+        $('#previewContents').html(content);
+    }
+</script>
+
+</html>
