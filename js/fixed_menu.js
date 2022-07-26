@@ -1,3 +1,5 @@
+/* 메인페이지 레이아웃 중 fixed 된 top, sidebar, footer의 js입니다. */
+
 /* 사용 대기중 */
 function blinkBell() {
     const blinkEvt = setInterval(function () {
@@ -95,7 +97,6 @@ $(function () {
 });
 
 function configBoxOn() {
-    console.log("??");
     $('.config-box').css('visibility', 'visible');
     $('.config-box').css('opacity', '1');
     setTimeout(() => { // 이 기능을 넣지 않으면 config-box가 열렸다가 바로 닫힘
