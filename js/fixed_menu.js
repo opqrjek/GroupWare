@@ -34,14 +34,14 @@ $(function() {
     // TODO: hide로 감추지 말고 content박스 자체에 display:none을 주거나하자 (페이지 새로고침시 깜빡거림)
     $('.accordion-content').hide();
     $('.accordion-menu').click(function () {
-        if ($(this).hasClass('active')) {
+        if ($(this).hasClass('active-accordion')) {
             $(this).next().slideUp(50);
-            $(this).removeClass('active');
+            $(this).removeClass('active-accordion');
         } else {
-            $('.accordion').find('.active').next().slideUp(50);
-            $('.accordion').find('.active').removeClass('active');
+            $('.accordion').find('.active-accordion').next().slideUp(50);
+            $('.accordion').find('.active-accordion').removeClass('active-accordion');
             $(this).next().slideDown(50);
-            $(this).addClass('active');
+            $(this).addClass('active-accordion');
         }
     });
 })

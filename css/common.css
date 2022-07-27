@@ -1348,3 +1348,46 @@ td {
 .page-active a{
     color:#fff;
 }
+
+/* Mail */
+.btn-mail-emergency {
+    display: inline-block;
+    padding: 0 8px;
+    height:27px;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: tomato;
+    color:#fff;
+    font-size: 13px;
+    margin-right:2px;
+    cursor: default;
+}
+
+.btn-mail-team {
+    display: inline-block;
+    padding: 0 8px;
+    height:27px;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #5cc850;
+    color:#fff;
+    font-size: 13px;
+    margin-right:2px;
+    cursor: default;
+}
+
+.btn-mail-individual {
+    display: inline-block;
+    padding: 0 8px;
+    height:27px;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #3f51b5;
+    color:#fff;
+    font-size: 13px;
+    margin-right:2px;
+    cursor: default;
+}

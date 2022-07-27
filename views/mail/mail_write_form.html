@@ -62,14 +62,7 @@
         width: 100%;
     }
 
-    /* 주소록 js part */
-    .active {
-        background-color: #eee;
-        font-weight: 700;
-    }
-</style>
-<!-- TODO: style 정리 -->
-<style>
+    /* modal1 */
     .modal-wrap1 {
         background-color: rgba(0, 0, 0, 0.3);
         width: 100%;
@@ -84,7 +77,7 @@
         z-index: 9999;
     }
 
-    .modal-wrap1.open {
+    .modal-wrap1.open1 {
         visibility: visible;
         opacity: 1;
     }
@@ -111,38 +104,95 @@
     .close-preview:hover {
         font-weight: 700;
     }
-</style>
-<!-- TODO: script 정리 / 내부 정리 -->
-<script>
-    $(function () {
-        // $(".popup1").click(function () {
-        //     $(".modal-wrap1").toggleClass("open");
-        // });
-    })
 
-    /* config-box popup event */
-    $(function () {
-        $(".popup1").click(function () {
-            configBoxToggle();
-        });
+    /* modal1// */
 
-        $('html').click(function (e) { // config-box외 구역 클릭
-            if ($(e.target).parents('.open').length < 1 && $('.modal-wrap1').hasClass(
-                    'open')) {
-                // console.log('팝업 외 부분이 맞습니다')
-                configBoxToggle();
-            }
-        });
-    });
+    /* modal2 */
+    .modal-wrap2 {
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        /* visibility: hidden;
+        opacity: 0; */
+        visibility: visible;
+        opacity: 1;
+        transition: 0.3s;
 
-    function configBoxToggle() {
-        setTimeout(() => { // 이 기능을 넣지 않으면 modal-wrap1이 열렸다가 바로 닫힘
-            $(".modal-wrap1").toggleClass("open");
-        }, 10);
+        z-index: 9999;
     }
-</script>
+
+    .modal-wrap2.open2 {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .modal2 {
+        /* width: 1700px; */
+        width: 800px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px 30px;
+
+        box-shadow:
+            -60px 0px 100px -90px #000,
+            60px 0px 100px -90px #000;
+    }
+
+    /* modal2// */
+
+    /* addressbook */
+
+    .addressbook-content a {
+        color: black;
+    }
+
+    .addressbook-content a:hover {
+        font-weight: 500;
+    }
+
+    .addressbook-menu {
+        width: 100%;
+        line-height: 16px;
+        margin-top: 20px;
+        font-size: 16px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .addressbook-menu:hover {
+        font-weight: 700;
+    }
+
+    .addressbook-subject {
+        width: 160px;
+    }
+
+    .addressbook-content {
+        /* width:100%; */
+        padding-top: 5px;
+        padding-left: 20px;
+        font-size: 14px;
+        line-height: 25px;
+    }
+
+    /* addressbook// */
+
+    /* js event part */
+    .active {
+        font-weight: 700;
+    }
+</style>
 
 <body class="noto">
+    <!-- <input type="hidden" value="" id="receiverArray"> -->
     <!-- modal1 -->
     <div class="modal-wrap1">
         <div class="modal1" style="border: 1px solid #777;">
@@ -208,6 +258,89 @@
         </div>
     </div>
     <!-- modal1// -->
+
+    <!-- modal2 -->
+    <div class="modal-wrap2">
+        <div class="modal2" style="border: 1px solid #777;">
+            <div class="addr noto fs-18 m-b-20"
+                style="border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;background-color: white;">
+                <div>
+                    <span style="font-weight: 500;">주소록</span>
+                </div>
+                <div class="close-preview popup2 pointer fs-22"
+                    style="width:25px;height:25px;line-height: 20px;text-align: center;">x</div>
+            </div>
+            <div style="width:100%;display: flex;background-color: white;">
+                <div class="addressbook" style="width:47%;border: 1px solid #ddd;padding: 0px 30px 20px;">
+                    <!-- TODO: checkbox구현 -->
+                    <!-- TODO: 오른쪽으로 보내기 -->
+                    <!-- TODO: 삭제하기 -->
+                    <!-- TODO: 전체삭제 -->
+                    <!-- TODO: 최대 20명 -->
+                    <div class="addressbook-box">
+                        <div class="addressbook-menu pointer">
+                            <div class="addressbook-subject">
+                                <span>개발과</span>
+                            </div>
+                        </div>
+                        <div class="addressbook-content">
+                            <ul>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="addressbook-box">
+                        <div class="addressbook-menu pointer">
+                            <div class="addressbook-subject">
+                                <span>인사과</span>
+                            </div>
+                        </div>
+                        <div class="addressbook-content">
+                            <ul>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="addressbook-box">
+                        <div class="addressbook-menu pointer">
+                            <div class="addressbook-subject">
+                                <span>회계과</span>
+                            </div>
+                        </div>
+                        <div class="addressbook-content">
+                            <ul>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="addressbook-box">
+                        <div class="addressbook-menu pointer">
+                            <div class="addressbook-subject">
+                                <span>영업과</span>
+                            </div>
+                        </div>
+                        <div class="addressbook-content">
+                            <ul>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                                <li><a href="#">홍길동</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:6%;">s</div>
+                <div style="width:47%;border: 1px solid #ddd;">s</div>
+            </div>
+        </div>
+    </div>
+    <!-- modal2// -->
+
+
     <div class="alert-box">
         <div class="alert-box-title">
             알림
@@ -486,30 +619,41 @@
                 <div>
                     <table class="m-b-10">
                         <tr class="center fs-14" style="font-weight: 500;">
-                            <!-- TODO: maxlength 설정 -->
-                            <!-- TODO: 수신자 UI 설정 ([@이름] 주위로 직사각형 박스에 border radius 넣어서 블럭형태로) -->
-                            <!-- TODO: 긴급 UI 설정 (제목 앞에 [긴급]빨간색으로 넣기) -->
+                            <!-- TODO: receiverList Event 구현 -->
                             <!-- TODO: 첨부파일 잘 들어가는지 확인 -->
                             <!-- TODO: 댓글쪽 기능 필요한 거 있으면 CKEditor 아래로 추가해보자 -->
                             <td class="td-5">받는사람</td>
                             <td class="td-5">
-                                <span class="btn-gray popup2 pointer" style="color:#555;">주소록</span>
+                                <span class="btn-gray popup2 pointer fs-12" style="color:#555;">주소록</span>
                             </td>
                             <td class="">
-                                <input id="input-reg" class="input-form" type="text" value="" required
-                                    autocomplete="off">
+                                <!-- <input id="input-reg" class="input-form" type="text" value="" required disabled
+                                    autocomplete="off" style="background-color: #fff;color:#000;"> -->
+                                <div id="receiverList" class=""
+                                    style="width:100%;height:35px;border:1px solid #ccc;border-radius: 2px;padding: 3px 5px;text-align: left;">
+                                    <!-- 긴급 -->
+                                    <div class="btn-mail-emergency">긴급</div>
+                                    <!-- 팀 -->
+                                    <div class="btn-mail-team">
+                                        인사과
+                                    </div>
+                                    <!-- 개인 -->
+                                    <div class="btn-mail-individual">
+                                        홍길동
+                                    </div>
+                                </div>
                             </td>
                             <td class="td-5">
                                 긴급
-                                <input type="checkbox">
+                                <input type="checkbox" onchange="emergencyChkEvent();">
                             </td>
                         </tr>
                         <tr class="center fs-14" style="font-weight: 500;">
                             <td>제목</td>
                             <td></td>
                             <td>
-                                <!-- TODO: maxlength 설정 -->
-                                <input id="title_popup" class="input-form" type="text" required autocomplete="off">
+                                <input id="title_popup" class="input-form" type="text" required maxlength="50"
+                                    placeholder="최대 50자까지 입력 가능합니다." autocomplete="off">
                             </td>
                             <td>
                                 일괄전송
@@ -572,11 +716,131 @@
     //     });
     // }
 
-    /* popup preview content event */
+    /* set popup preview content event */
     function previewContents() {
         const content = CKEDITOR.instances.editor1.getData();
         $('#previewContents').html(content);
     }
+
+    /* modal1 popup preview event */
+    $(function () {
+        $(".popup1").click(function () {
+            modalToggle1();
+        });
+
+        $('html').click(function (e) { // modal1외 구역 클릭
+            if ($(e.target).parents('.open1').length < 1 && $('.modal-wrap1').hasClass(
+                    'open1')) {
+                // console.log('팝업 외 부분이 맞습니다')
+                modalToggle1();
+            }
+        });
+    });
+
+    function modalToggle1() {
+        setTimeout(() => { // 이 기능을 넣지 않으면 modal-wrap1이 열렸다가 바로 닫힘
+            $(".modal-wrap1").toggleClass("open1");
+        }, 10);
+    }
+
+    /* modal2 popup preview event */
+    $(function () {
+        $(".popup2").click(function () {
+            modalToggle2();
+        });
+
+        $('html').click(function (e) { // modal2외 구역 클릭
+            if ($(e.target).parents('.open2').length < 1 && $('.modal-wrap2').hasClass(
+                    'open2')) {
+                // console.log('팝업 외 부분이 맞습니다')
+                modalToggle2();
+            }
+        });
+    });
+
+    function modalToggle2() {
+        setTimeout(() => { // 이 기능을 넣지 않으면 modal-wrap1이 열렸다가 바로 닫힘
+            $(".modal-wrap2").toggleClass("open2");
+        }, 10);
+    }
+
+    /* addressbook menu event */
+    $(function () {
+        // TODO: hide로 감추지 말고 content박스 자체에 display:none을 주거나하자 (페이지 새로고침시 깜빡거림)
+        // alert();
+        $('.addressbook-content').hide();
+        $('.addressbook-menu').click(function () {
+            if ($(this).hasClass('addressbook-active')) {
+                $(this).next().slideUp(50);
+                $(this).removeClass('addressbook-active');
+            } else {
+                $('.addressbook').find('.addressbook-active').next().slideUp(50);
+                $('.addressbook').find('.addressbook-active').removeClass('addressbook-active');
+                $(this).next().slideDown(50);
+                $(this).addClass('addressbook-active');
+            }
+        });
+    })
+
+    // function addEmergencyEvent() {
+    //     if ($('#receiverList').hasClass('active-emergency')) {
+    //         $('#receiverList').removeClass('active-emergency');
+    //         receiverListUIEvent();
+    //     } else {
+    //         $('#receiverList').addClass('active-emergency');
+    //         receiverListUIEvent();
+    //     }
+    // }
+
+    // function addTeamEvent(team) {
+    //     // team = int
+    //     // 미정 : 0 / 개발 : 1 / 인사 : 2 / 회계 : 3 / 영업 : 4
+    //     if ($('#receiverList').hasClass('active-team-'+ team)) {
+    //         $('#receiverList').removeClass('active-team-'+ team);
+    //         receiverListUIEvent();
+    //     } else {
+    //         $('#receiverList').addClass('active-team-'+ team);
+    //         receiverListUIEvent();
+    //     }
+    // }
+
+    // function addIndividualEvent(individual) {
+    //     // individual = String
+    //     if ($('#receiverList').hasClass('active-individual-'+ individual)) {
+    //         $('#receiverList').removeClass('active-individual-'+ individual);
+    //         receiverListUIEvent();
+    //     } else {
+    //         $('#receiverList').addClass('active-individual-'+ individual);
+    //         receiverListUIEvent();
+    //     }
+    // }
+
+    // function receiverListUIEvent() {
+    //     const emergencyUI = '<div class="btn-mail-emergency">긴급</div>';
+    //     const imperativeSentence = '';
+    //     if($('#receiverList').hasClass('active-emergency')) {
+    //         imperativeSentence += emergencyUI;
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+    // $(function() {
+    //     const tmp = "test";
+    //     $('#receiverList').addClass('active-team-' + tmp);
+    //     if($('#receiverList').hasClass('active-team-test')) {
+    //         alert("성공!");
+    //     }
+    // });
 </script>
 
 </html>
