@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mail_write_form</title>
+    <title>mail_form_write</title>
 
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/common.css">
     <link rel="stylesheet" href="../../css/fixed_menu.css">
+    <link rel="stylesheet" href="../../css/jquery.treeview.css">
 
     <script src="https://kit.fontawesome.com/5ae11af4f3.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../ckeditor/ckeditor.js"></script>
+    <script src="../../js/jquery.treeview.js"></script>
+    <script src="../../js/treeview.js"></script>
 </head>
 
 <style>
@@ -115,10 +118,10 @@
         position: fixed;
         top: 0;
         left: 0;
-        /* visibility: hidden;
-        opacity: 0; */
-        visibility: visible;
-        opacity: 1;
+        visibility: hidden;
+        opacity: 0;
+        /* visibility: visible;
+        opacity: 1; */
         transition: 0.3s;
 
         z-index: 9999;
@@ -131,7 +134,8 @@
 
     .modal2 {
         /* width: 1700px; */
-        width: 800px;
+        width: 600px;
+        min-height: 800px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -164,16 +168,17 @@
         font-size: 16px;
         text-align: left;
         display: flex;
-        justify-content: space-between;
+
     }
 
     .addressbook-menu:hover {
         font-weight: 700;
     }
 
-    .addressbook-subject {
+    /* .addressbook-subject {
         width: 160px;
-    }
+        background-color: #555;
+    } */
 
     .addressbook-content {
         /* width:100%; */
@@ -248,9 +253,19 @@
                         </td>
                         <td></td>
                     </tr>
+                    <!-- TODO: 미리보기 스크롤 버그 -->
                     <tr class="center fs-14" style="font-weight: 500;">
-                        <td colspan="4" id="previewContents" style="text-align: left;padding:20px 0;">
-
+                        <td>
+                            
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td id="previewContents" style="text-align: left;padding:20px 0;text-align: justify;">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci impedit explicabo laboriosam dolor distinctio fugit tempore fugiat laudantium alias, accusamus enim odit esse corrupti voluptatum architecto, nobis perspiciatis! Unde mollitia quas iste suscipit dolor quod nesciunt debitis recusandae, totam reprehenderit, accusamus autem temporibus, ipsum voluptatibus omnis eligendi obcaecati nemo ratione alias necessitatibus amet! Molestias tempore pariatur asperiores quo, praesentium accusamus quis cum ex autem, voluptate labore tempora delectus. Possimus nihil asperiores fugiat, voluptates a consequatur fugit magnam vel? Veritatis sint soluta ipsam quas dignissimos animi ea iste officia ipsa beatae, similique reprehenderit nam dolore porro quam minima laborum velit est, ut sit? Debitis aperiam autem recusandae tenetur, mollitia adipisci error natus similique rem at veniam dolorem laudantium cupiditate, illum doloremque maiores veritatis consectetur laborum quas possimus facilis. Nesciunt recusandae aliquid aut accusantium blanditiis eius dolores illum asperiores ut aperiam earum magni animi cumque id, sequi repellendus vitae harum! Sit magni quos expedita facere eos voluptas repellat voluptatum! Fugiat ut non nemo a laudantium magnam voluptatibus, placeat amet commodi, sequi molestiae perspiciatis iste nisi reprehenderit cum adipisci corporis dicta officia eum neque at! Perspiciatis obcaecati, similique, modi nulla quae, fugiat natus expedita enim magni eius voluptatem illo laudantium aliquam! Officiis odio est excepturi magnam aspernatur voluptatum porro quod tempora eaque minima dolore id itaque ipsa hic delectus, nostrum ut? Quas et ut autem maxime ullam asperiores, minima nisi architecto beatae optio repellendus modi laudantium aspernatur quam reiciendis voluptas laborum sunt, vero sequi dolorum obcaecati! Non minima explicabo placeat soluta ad minus aliquid, natus deserunt accusamus repellendus distinctio eligendi, illum libero dolorum eum obcaecati nostrum corrupti unde voluptate nam tenetur, blanditiis doloribus! Nihil fugiat aut et dolore recusandae mollitia enim atque, veritatis at maxime dolor consequatur quae sit sequi natus, quasi praesentium laboriosam. Ipsam ipsum quam est cumque et, facere inventore! Consequuntur fugiat odio molestiae quia autem iste saepe ad, ab magni at doloribus minima voluptatem eligendi. Id repellendus doloremque cum at fuga laboriosam doloribus magnam. Maiores amet pariatur ex reiciendis illo obcaecati molestias asperiores perspiciatis nostrum itaque omnis tempora, minima tenetur impedit vel consequatur labore nisi molestiae reprehenderit natus vitae at nesciunt? Voluptatum harum placeat culpa consequuntur? Itaque saepe vitae debitis modi numquam quas provident consectetur, nulla aliquam ipsum natus eligendi, placeat ab rem magni fugiat explicabo amet illum. Nesciunt illum eaque autem officia omnis quas impedit expedita sunt? Ea dolore laborum enim placeat, esse minima, qui, molestias ipsa distinctio iusto blanditiis aperiam. Sunt dolorum adipisci placeat voluptatibus minus autem tenetur, nemo laborum voluptas deleniti quisquam magnam consequatur eveniet voluptatem maiores corporis sed amet provident praesentium nesciunt fugiat, illum veritatis quo. Cumque, laudantium dicta nostrum quia omnis fugit nihil non fuga minus eius praesentium dignissimos maiores amet optio at unde a. Illo quas voluptates consequuntur reiciendis ab soluta labore, praesentium corporis sit! Repudiandae laborum modi totam nostrum fugit nulla ab? Pariatur, iusto molestias quod earum doloremque porro ad excepturi quaerat minus sed nisi itaque blanditiis eum, a, labore autem magni veritatis nemo optio illo deserunt ducimus dignissimos nesciunt? Laudantium cupiditate obcaecati distinctio aspernatur sequi, consequatur quos possimus deserunt adipisci dolorum, et beatae accusantium voluptate cumque qui ea amet eos ratione quo recusandae totam. Facere architecto, dolores pariatur officia iste molestias cumque voluptatem sint deserunt odio quasi at neque sed veniam error sit fuga! Quae aspernatur aperiam vitae qui omnis impedit dolor quasi, amet ipsa soluta quia reiciendis modi facere quibusdam alias expedita maxime necessitatibus excepturi incidunt illum unde placeat? Molestias ab unde perferendis impedit id soluta dolor rerum sapiente dolore, asperiores sed omnis repudiandae dicta? Consectetur repellendus magni reiciendis. Quae sunt quia quidem, ducimus molestias quos voluptate rem illo voluptatibus at facere a asperiores nihil! Officia itaque optio provident error facilis vero quidem blanditiis natus tenetur repudiandae maiores incidunt, fuga consequuntur culpa quos. Repellendus dolore atque error quibusdam? Blanditiis dolores incidunt soluta voluptas corporis qui vero dignissimos ipsa accusamus velit temporibus fugit itaque nemo natus vitae doloremque, quis sequi dolorum laborum dolore. Iste dolorum ex quod quam ea exercitationem asperiores, pariatur dolore veniam amet! Eius iure magni velit rem ipsum sequi neque accusamus! Minus exercitationem, facere eos et temporibus ullam dicta. Esse, iure cumque quidem facere eaque saepe officiis quae corporis, nemo a libero, harum quas. Porro illo officiis corrupti veritatis quasi doloremque impedit blanditiis nulla animi. Velit pariatur similique debitis obcaecati, minima voluptas, maiores delectus totam fugiat repellendus voluptatem accusantium nesciunt in asperiores quibusdam odio beatae blanditiis saepe sapiente veniam sequi, illum expedita deserunt repudiandae. Voluptatem accusantium aut recusandae soluta tenetur magnam. Ex dolore maiores quo doloremque minus rerum corrupti, consectetur incidunt facilis unde expedita, sed ab dolores culpa perferendis labore fuga velit quam! In vero tempore minus laborum quas quaerat iste mollitia ipsam natus deserunt voluptate rerum aliquam totam consequatur sed, est similique recusandae exercitationem nihil. Harum temporibus tenetur vitae perspiciatis delectus dolorem iste, reiciendis fuga velit neque veniam impedit voluptas, nulla odio dignissimos? Obcaecati dolorum accusamus nobis, nostrum perspiciatis provident, numquam qui incidunt alias temporibus similique facere asperiores corporis minima eos laudantium esse ullam possimus harum quae eligendi! In a rerum veniam placeat provident! Quaerat quasi deleniti neque suscipit temporibus commodi reprehenderit minus ipsum a numquam. Distinctio fuga natus eligendi ipsum quia ab necessitatibus iste eos doloribus dolor? Eaque magni quaerat doloremque fugiat et fuga quos quod odio, perferendis adipisci cumque debitis blanditiis nisi tempore voluptates nihil animi minus sit qui eum. Illo modi, assumenda placeat dicta omnis, dolor quae voluptatibus quam, nesciunt vel magnam recusandae dolorum deserunt. Ut ipsam dolore magni expedita sint doloribus voluptates sequi accusantium ab libero facere error quibusdam assumenda harum quaerat saepe, tempore, ullam, et iusto? Dolorum praesentium mollitia sequi doloribus recusandae excepturi, beatae iste velit expedita nobis adipisci est soluta dicta provident aperiam, fugiat unde vel, ullam ipsa ratione error. Rem, veritatis doloribus illo eveniet voluptatum illum suscipit voluptate autem placeat eum maiores. Incidunt eos dolor provident placeat minus amet adipisci assumenda? Quibusdam rem magni ad consectetur doloremque voluptatum aut sequi fugit nesciunt? Nulla laudantium aperiam dolor explicabo quia vel nostrum dolores ut natus, esse, quasi, accusamus harum perspiciatis! Inventore, sunt doloremque!
+                        </td>
+                        <td>
+                            
                         </td>
                     </tr>
                 </table>
@@ -263,22 +278,23 @@
     <div class="modal-wrap2">
         <div class="modal2" style="border: 1px solid #777;">
             <div class="addr noto fs-18 m-b-20"
-                style="border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;background-color: white;">
+                style="border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;">
                 <div>
                     <span style="font-weight: 500;">주소록</span>
                 </div>
                 <div class="close-preview popup2 pointer fs-22"
                     style="width:25px;height:25px;line-height: 20px;text-align: center;">x</div>
             </div>
-            <div style="width:100%;display: flex;background-color: white;">
-                <div class="addressbook" style="width:47%;border: 1px solid #ddd;padding: 0px 30px 20px;">
+            <div style="width:100%;height:100%;display: flex;">
+                <div class="addressbook" style="width:47%;min-height:700px;border: 1px solid #ddd;">
                     <!-- TODO: checkbox구현 -->
                     <!-- TODO: 오른쪽으로 보내기 -->
                     <!-- TODO: 삭제하기 -->
                     <!-- TODO: 전체삭제 -->
                     <!-- TODO: 최대 20명 -->
-                    <div class="addressbook-box">
+                    <!-- <div class="addressbook-box">
                         <div class="addressbook-menu pointer">
+                            <input type="checkbox">
                             <div class="addressbook-subject">
                                 <span>개발과</span>
                             </div>
@@ -331,10 +347,100 @@
                                 <li><a href="#">홍길동</a></li>
                             </ul>
                         </div>
+                    </div> -->
+                    <!-- TODO: jsp 작업 시 주소록 작업 -->
+                    <ul id="tree" class="fs-14" style="line-height: 0.5;padding: 0px 30px 20px;">
+                        <li>
+                            <img src="../../../../image/tree/folder-closed.gif" /> <a class="member_team">관리부</a>
+                            <ul>
+                                <li>
+                                    <img src="../../image/tree/folder.gif" /><a class="member_individual">관리부장</a>
+                                </li>
+                                <li>
+                                    <img src="../../image/tree/folder.gif" /><a class="member_individual">관리과장</a>
+                                </li>
+                                <li>
+                                    <img src="../../image/tree/folder.gif" /><a class="member_individual">관리과 대리</a>
+                                </li>
+                                <li>
+                                    <img src="../../image/tree/folder.gif" /><a class="member_individual">관리과 사원</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <img src="../../image/tree/folder-closed.gif" /> <a class="member_team">기획부</a>
+                            <ul>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">기획부장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">기획과장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">기획과 대리</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">기획과 사원</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <img src="../../image/tree/folder-closed.gif" /> <a class="member_team">인사부</a>
+                            <ul>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">인사부장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">인사과장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">인사과 대리</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">인사과 사원</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <img src="../../image/tree/folder-closed.gif" /> <a class="member_team">영업부</a>
+                            <ul>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">영업부장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">영업과장</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">영업과 대리</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">영업과 사원</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <img src="../../image/tree/folder-closed.gif" /> <a class="member_team">생산부</a>
+                            <ul>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">생산부장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">생산과장</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">생산과 대리</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">생산과 사원</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <img src="../../image/tree/folder-closed.gif" /> <a class="member_team">자재부</a>
+                            <ul>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">자재부장</a></li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">자재과장</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">자재과 대리</a>
+                                </li>
+                                <li><img src="../../image/tree/folder.gif" /><a class="member_individual">자재과 사원</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div style="width:6%;"></div>
+                <div style="width:47%;min-height:700px;display: flex;flex-direction: column;justify-content: space-between;">
+                    <div class="address-team-box" style="border: 1px solid #ddd;height:48%;">
+                        
+                    </div>
+                    <div class="address-individual-box" style="border: 1px solid #ddd;height:48%;">
+                    
                     </div>
                 </div>
-                <div style="width:6%;">s</div>
-                <div style="width:47%;border: 1px solid #ddd;">s</div>
             </div>
         </div>
     </div>
@@ -600,6 +706,7 @@
     </nav>
     <main>
         <section>
+            <!-- TODO: jsp form post -->
             <form method="post" name="mailForm" id="mailForm" action="#">
                 <div class="addr noto fs-18 m-b-20" style="border-bottom: 1px solid #ccc;">
                     <div>
@@ -610,9 +717,10 @@
                     <div>
                         <button type="button" class="btn-off noto popup1" onclick="previewContents();">미리보기</button>
                         <button type="button" class="btn-off noto">임시저장</button>
-                        <button type="button" class="btn-off noto">예약발송</button>
+                        
                     </div>
                     <div class="search-grp">
+                        <button type="button" class="btn-tomato noto">예약발송</button>
                         <button type="button" class="btn-tomato noto">보내기</button>
                     </div>
                 </div>
@@ -764,23 +872,7 @@
         }, 10);
     }
 
-    /* addressbook menu event */
-    $(function () {
-        // TODO: hide로 감추지 말고 content박스 자체에 display:none을 주거나하자 (페이지 새로고침시 깜빡거림)
-        // alert();
-        $('.addressbook-content').hide();
-        $('.addressbook-menu').click(function () {
-            if ($(this).hasClass('addressbook-active')) {
-                $(this).next().slideUp(50);
-                $(this).removeClass('addressbook-active');
-            } else {
-                $('.addressbook').find('.addressbook-active').next().slideUp(50);
-                $('.addressbook').find('.addressbook-active').removeClass('addressbook-active');
-                $(this).next().slideDown(50);
-                $(this).addClass('addressbook-active');
-            }
-        });
-    })
+    
 
     // function addEmergencyEvent() {
     //     if ($('#receiverList').hasClass('active-emergency')) {
