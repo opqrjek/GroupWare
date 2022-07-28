@@ -34,11 +34,15 @@
         padding: 20px 30px;
     }
 
-    table tr:nth-child(2n-1) {
+    /* table tr:nth-child(2n-1) {
         background-color: #f2f2f2;
-    }
+    } */
 
-    table tr:nth-child(2n) {
+    /* table tr:nth-child(2n) {
+        background-color: #fafafa;
+    } */
+
+    table tr {
         background-color: #fafafa;
     }
 
@@ -56,8 +60,11 @@
     table tr:last-child td {
         border-bottom: 2px solid #e3e7ee;
     }
-</style>
 
+    .onemail:hover {
+        background-color: #f4f4f4;
+    }
+</style>
 <body class="noto">
     <div class="alert-box">
         <div class="alert-box-title">
@@ -329,6 +336,7 @@
             </div>
             <div class="func-grp1 m-b-18" style="display: flex;justify-content: space-between;">
                 <div>
+                    <button type="button" class="btn-tomato noto">메일작성</button>
                     <button type="button" class="btn-off noto">답장</button>
                     <button type="button" class="btn-off noto">전달</button>
                     <button type="button" class="btn-off noto">차단</button>
@@ -361,7 +369,41 @@
                         <td class="td-5">발송시간</td>
                         <td class="td-5">비고</td>
                     </tr>
-                    <tr class="center fs-15">
+                    <tr class="onemail center fs-15 pointer" onclick="location.href='mail_form_read.html'">
+                        <td>
+                            <input type="checkbox" class="chk-child" />
+                        </td>
+                        <td>사원</td>
+                        <td>홍길동</td>
+                        <td style="text-align: left;">테스트 메일입니다. 확인 부탁드리겠습니다.</td>
+                        <td>
+                            <span><i class="fas fa-file-archive"></i></span>
+                        </td>
+                        <td>
+                            1시간전
+                        </td>
+                        <td>
+                            일반
+                        </td>
+                    </tr>
+                    <tr class="onemail center fs-15 pointer">
+                        <td>
+                            <input type="checkbox" class="chk-child" />
+                        </td>
+                        <td>사원</td>
+                        <td>홍길동</td>
+                        <td style="text-align: left;">테스트 메일입니다. 확인 부탁드리겠습니다.</td>
+                        <td>
+                            <span><i class="fas fa-file-archive"></i></span>
+                        </td>
+                        <td>
+                            1시간전
+                        </td>
+                        <td>
+                            일반
+                        </td>
+                    </tr>
+                    <tr class="onemail center fs-15 pointer">
                         <td>
                             <input type="checkbox" class="chk-child" />
                         </td>

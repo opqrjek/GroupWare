@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mail_form_read</title>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/fixed_menu.css">
+    <link rel="stylesheet" href="../../css/jquery.treeview.css">
+
+    <script src="https://kit.fontawesome.com/5ae11af4f3.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../ckeditor/ckeditor.js"></script>
+    <script src="../../js/jquery.treeview.js"></script>
+    <script src="../../js/treeview.js"></script>
+</head>
+
+<style>
+    main {
+        width: calc(100% - 200px);
+        min-height: calc(100vh - 65px);
+        margin-top: 65px;
+        margin-left: 200px;
+        padding: 20px 30px;
+
+        background-color: #eef0f8;
+    }
+
+    main section {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px 30px;
+        /* min-height: 930px; */
+        margin-bottom: 40px;
+    }
+
+    /* table css */
+    tr {
+        height: 40px;
+    }
+
+    .td-l {
+        border-left: 1px solid #d6dce7;
+    }
+
+    .td-r {
+        border-right: 1px solid #d6dce7;
+    }
+
+    /* table 선색 */
+    td {
+        border: 1px solid #e3e7ee;
+        border-left: none;
+        border-right: none;
+    }
+
+    .mail-title:hover {
+        font-weight: 700;
+    }
+
+    .input-form {
+        width: 100%;
+    }
+</style>
+
+<body class="noto">
+
+    <div class="alert-box">
+        <div class="alert-box-title">
+            알림
+        </div>
+        <div class="alert-box-list">
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+            <div class="alert-box-section pointer">
+                <div class="alert-box-icon">
+                    <span><i class="fas fa-user-circle"></i></span>
+                </div>
+                <div class="alert-box-contents">
+                    <p>전자결재 서류입니다.</p>
+                    <p>n시간 전 - 홍길동 사원</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="config-box">
+        <div class="config-box-list">
+            <ul>
+                <li><a href="#">다크모드</a></li>
+                <li><a href="#">알림설정</a></li>
+            </ul>
+        </div>
+    </div>
+    <header>
+        <div class="header-logo roboto">
+            <span><a href="#">Portfolio</a></span>
+        </div>
+        <div class="header-bar">
+            <div class="header-alert">
+                <div class="header-alert-icon bell-gray">
+                    <span class="bell-icon pointer"><i class="fas fa-bell"></i></span>
+                </div>
+                <div class="header-alert-badge pointer">
+                    <span><b>6</b></span>
+                </div>
+                <div class="header-alert-text">
+                    <!-- <span><b>아무개</b></span><span>님이 새로운 메세지를 보냈습니다.</span> -->
+                    <!-- <button type="button" onclick="blinkBell();">test</button> -->
+                </div>
+            </div>
+            <div class="header-menu" style="display: flex;justify-content: space-between;">
+                <div class="header-part">
+                    <span>홍길동</span>
+                    <span>-</span>
+                    <span>접속권한 </span>
+                    <span>n등급</span>
+                </div>
+                <div class="header-division"></div>
+                <div class="header-part-a" onclick="location.href = '#'">
+                    내정보
+                </div>
+                <div class="header-part-a header-part-config" onclick="location.href = '#'">
+                    환경설정
+                </div>
+                <!-- <div class="header-division"></div> -->
+                <div class="header-part-a" onclick="location.href = '#'">
+                    로그아웃
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="accordion" style="color:#999">
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-book"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>사내조직/연락처</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">사원 목록</a></li>
+                        <li><a href="#">조직도</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-stamp"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>전자결재</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">전자결재홈</a></li>
+                        <li><a href="#">새결재진행</a></li>
+                        <li><a href="#">결재목록</a></li>
+                        <li><a href="#">완료문서</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>메일</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">새메일작성</a></li>
+                        <li><a href="#">받은메일함</a></li>
+                        <li><a href="#">보낸메일함</a></li>
+                        <li><a href="#">내게쓴메일함</a></li>
+                        <li><a href="#">중요메일함</a></li>
+                        <li><a href="#">예약메일함</a></li>
+                        <li><a href="#">임시보관함</a></li>
+                        <li><a href="#">삭제메일함</a></li>
+                        <li><a href="#">차단메일함</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-table"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>게시판</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">공통</a></li>
+                        <li><a href="#">개발</a></li>
+                        <li><a href="#">인사</a></li>
+                        <li><a href="#">회계</a></li>
+                        <li><a href="#">영업</a></li>
+                        <li><a href="#">자료실</a></li>
+                        <li><a href="#">자유게시판</a></li>
+                        <li><a href="#">익명게시판</a></li>
+                        <li><a href="#">게시판관리</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-clock"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>예약</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">회의실예약</a></li>
+                        <li><a href="#">차량예약</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-calendar-day"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>일정관리</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">일정목록</a></li>
+                        <li><a href="#">일정추가</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-briefcase"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>근태관리</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">내 근태현황</a></li>
+                        <li><a href="#">출퇴근현황</a></li>
+                        <li><a href="#">내 인사정보</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-chart-pie"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>설문조사</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">진행중인 설문</a></li>
+                        <li><a href="#">종료된 설문</a></li>
+                        <li><a href="#">내가 만든 설문</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer" onclick="location.href='#'">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-check-square"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>ToDo+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-box">
+                <div class="accordion-menu pointer">
+                    <div class="accordion-icon">
+                        <span><i class="fas fa-asterisk"></i></span>
+                    </div>
+                    <div class="accordion-subject">
+                        <span>회사정보</span>
+                    </div>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#">회사기본정보</a></li>
+                        <li><a href="#">DB</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section style="min-height: 930px;">
+            <!-- TODO: jsp form post -->
+            <form method="post" name="mailForm" id="mailForm" action="#">
+                <div class="addr noto fs-18 m-b-20"
+                    style="border-bottom: 1px solid #ccc;display: flex;justify-content: space-between;">
+                    <div>
+                        <span style="font-weight: 500;">메일확인</span>
+                    </div>
+                </div>
+                <div class="func-grp1 m-b-18">
+                    <div>
+                        <button type="button" class="btn-off noto">답장</button>
+                        <button type="button" class="btn-off noto">전달</button>
+                        <button type="button" class="btn-off noto">삭제</button>
+                        <button type="button" class="btn-off noto">중요처리</button>
+                    </div>
+                </div>
+                <div>
+                    <table class="m-b-10">
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td class="td-5">발신자</td>
+                            <td class="td-5">
+
+                            </td>
+                            <td style="text-align: left;">
+                                <span>개발팀</span>
+                                <span> 사원</span>
+                                <span>/ 홍길동</span>
+                            </td>
+                            <td class="td-5">
+                                07/26 12:13
+                            </td>
+                        </tr>
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td>제목</td>
+                            <td></td>
+                            <td style="text-align: left;">
+                                테스트 메일입니다. 확인 부탁드리겠습니다.
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td>
+                                <div>첨부파일</div>
+                            </td>
+                            <td style="line-height: 0;">
+
+                            </td>
+                            <td style="text-align: left;">
+                                첨부파일.txt
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="center fs-14" style="font-weight: 500;">
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td id="previewContents" style="text-align: left;padding:20px 0;text-align: justify;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ratione incidunt
+                                culpa omnis odio tempore eum amet a nemo iste. Mollitia officia iure quasi eveniet
+                                delectus! Itaque, quod dolorem! Ratione in vero beatae dolore ea fugit quo quasi iure
+                                deserunt, nam velit dignissimos placeat. Tempora nostrum ab similique consectetur,
+                                dignissimos fugiat aliquam eius molestiae illum quibusdam? Recusandae aliquid vitae
+                                placeat, dignissimos velit reprehenderit tenetur quam quas quisquam amet ducimus. At
+                                quia maiores in et praesentium possimus sunt deserunt ad eligendi, tempora, libero
+                                dolorem illum! Veritatis vero pariatur corrupti delectus accusamus, ratione laborum
+                                blanditiis unde itaque laudantium recusandae dicta, neque deserunt perspiciatis.
+                                Incidunt, illum quibusdam. Perferendis, velit officia? Doloremque, non blanditiis, harum
+                                dicta soluta tenetur distinctio ducimus, similique facilis vel inventore aut culpa.
+                                Consequuntur itaque neque earum? Ullam hic ad corporis atque non nobis inventore unde
+                                explicabo totam. Consequatur voluptatum aspernatur at officia dolores ullam, sunt quo
+                                nemo voluptates vel facilis harum culpa, vero distinctio odio est. Fuga earum, qui
+                                consectetur nisi, vitae distinctio praesentium voluptates ipsa dignissimos, optio iusto
+                                nesciunt nemo laborum pariatur quidem cumque necessitatibus repellat minima nobis
+                                veritatis? Neque corrupti, quas fugiat repellendus eveniet aliquam nemo doloribus amet,
+                                quaerat, explicabo in! Harum obcaecati est laudantium mollitia doloremque placeat hic
+                                cupiditate consequatur, quos officia, perspiciatis, nemo sapiente aspernatur. Quo
+                                aperiam quam reiciendis quas cumque, eligendi alias, ratione, voluptatem odio rem
+                                aliquid repellat voluptates? At nam earum ratione esse. Illo autem fuga, unde dolorum
+                                explicabo vel rem reiciendis illum fugit repellat nostrum rerum, accusamus doloremque
+                                sit dignissimos, eos odio? Officia quis quibusdam mollitia cupiditate, perspiciatis in
+                                necessitatibus nisi labore incidunt fuga recusandae! Molestias, consectetur mollitia.
+                                Illum iure corrupti autem quod aperiam ipsum placeat, hic nemo inventore doloribus
+                                perspiciatis rem ex! Mollitia, ipsum accusamus. Quidem voluptatem dignissimos cupiditate
+                                voluptatibus similique neque ullam distinctio optio, magni magnam itaque id ex
+                                asperiores fugit inventore beatae! Earum eum sed, recusandae dicta nam facilis optio
+                                beatae maxime molestias nobis magni labore distinctio id harum officiis a ut. Omnis
+                                similique voluptatem consequatur sed veritatis dicta tenetur quo amet vitae commodi
+                                sapiente atque minus distinctio aliquam sit aut ad, nihil mollitia obcaecati molestias
+                                ut asperiores aperiam totam. Doloremque illo, voluptate minima modi totam repellat sed
+                                ducimus quis quas blanditiis tempore veniam vel voluptates autem esse officiis sit,
+                                ipsam necessitatibus, asperiores beatae commodi. Ut ad delectus, sunt quam deserunt quae
+                                quos eius laborum et velit. Reiciendis debitis error eveniet explicabo! Repudiandae
+                                labore voluptatem sit recusandae a saepe, ex quasi dolore. Sit sint voluptatum debitis,
+                                sed dolorem neque, totam architecto accusantium voluptatem rerum odio eius! Tenetur
+                                ipsam obcaecati maxime sequi neque hic minima unde repellendus earum deserunt nesciunt
+                                cum, placeat dolorum dicta eaque saepe atque itaque mollitia dignissimos facere natus?
+                                Reprehenderit magni, rem ea culpa at quae in incidunt rerum mollitia corrupti tempora
+                                iusto consequatur reiciendis esse qui nam quis fugiat? Molestias impedit ipsa laudantium
+                                id perferendis eius iusto quas, ab quaerat error accusamus, aliquam unde possimus omnis.
+                                Sequi at alias incidunt repellat officia deserunt ratione architecto similique nostrum,
+                                odit ipsum quis, quae ad. Adipisci dignissimos asperiores impedit ut velit vitae
+                                possimus, qui, dolore quas, nemo quaerat ratione eum necessitatibus magni sapiente eos
+                                dolor! Ab numquam libero saepe magni ipsum facere, corrupti necessitatibus quisquam
+                                perferendis, distinctio ratione quos asperiores eius minus nihil, natus minima magnam
+                                iure ullam sint reiciendis obcaecati quas ipsam. Facere commodi cumque nihil neque unde?
+                                Quisquam vitae perspiciatis ipsa ab numquam. Natus mollitia, similique ipsa recusandae,
+                                minus rem sed blanditiis nulla saepe earum excepturi voluptate nostrum labore voluptas
+                                provident voluptatem ut expedita a aspernatur molestias inventore obcaecati repellendus.
+                                Labore provident iusto maxime dolorem explicabo autem veniam, quibusdam impedit id,
+                                nobis quasi doloribus eos perferendis illum ipsum architecto distinctio laudantium quae
+                                quod dolores odit aut. Necessitatibus ipsam cum tenetur excepturi molestias ea
+                                voluptatem voluptatum eum suscipit voluptate, aspernatur, accusantium iusto illo dolorum
+                                quidem obcaecati nisi ipsum quos sapiente. Eligendi rerum dolore quis laudantium. Quidem
+                                odit harum voluptatum cum molestiae quia maiores, cupiditate velit, quisquam autem
+                                eveniet vitae omnis dolorum ab hic necessitatibus illum quas iste libero eaque. Nostrum
+                                inventore nihil hic eligendi, harum saepe numquam quasi cupiditate incidunt aliquam
+                                similique fugit accusantium totam. Exercitationem ea ipsa adipisci, totam laborum
+                                laudantium, perferendis voluptatem minima ducimus praesentium, aperiam nihil impedit!
+                                Voluptate, repudiandae eius facere libero et minus in dignissimos dolores error.
+                                Facilis, doloremque accusantium! Inventore, reiciendis. Assumenda, officia nam
+                                reprehenderit nulla asperiores, amet adipisci molestias aspernatur reiciendis iste
+                                impedit. Blanditiis necessitatibus consectetur perferendis tenetur modi provident cum a!
+                                Assumenda dolorem illo ad, iusto, error quasi corporis illum quas fuga ratione quis
+                                harum ducimus. Quidem doloremque aspernatur dolor maiores! Sapiente reiciendis minima
+                                dolores et explicabo debitis fuga, omnis maiores illo, ipsa velit tenetur accusamus,
+                                beatae delectus ex sequi porro voluptatum dignissimos voluptas optio quaerat quos culpa
+                                iste repellat! Ipsam, rem. Doloremque possimus eos quae. Iusto alias ratione
+                                consequuntur eius perferendis accusantium voluptatum consequatur! Id, laudantium
+                                veritatis? Nihil, id. Itaque quis id nesciunt laudantium libero vero dolorem doloribus
+                                perspiciatis atque. Temporibus molestiae eveniet hic laudantium minus architecto
+                                voluptatibus dolorem quis, aut fugit, non, porro dignissimos rem deleniti. At impedit
+                                sed, distinctio nihil magni, quis aspernatur omnis nobis quibusdam inventore laudantium
+                                aliquid eligendi veniam corporis doloribus neque ut deserunt velit tenetur maiores
+                                accusantium. Voluptates adipisci facere quaerat corporis, earum voluptatum nesciunt
+                                voluptate laudantium repudiandae numquam exercitationem? Facere quo nulla nesciunt nemo?
+                                Vero recusandae numquam deserunt corporis est eaque velit optio dicta beatae molestiae
+                                sapiente dolores expedita ipsum, hic doloribus, nostrum maiores necessitatibus aperiam
+                                consequuntur quibusdam at quo iste. Nostrum asperiores voluptatem hic porro, beatae
+                                neque vitae esse possimus illum aliquam voluptates inventore veritatis autem similique
+                                est et animi necessitatibus, recusandae perferendis aliquid rem unde? Enim nisi totam
+                                rerum adipisci, iusto esse, maiores earum voluptates velit animi, dolores doloremque
+                                corporis aliquam vitae porro similique minima numquam ad. Ipsam earum iusto repellat,
+                                laboriosam consequuntur iure quod modi laborum error id quidem aliquam suscipit possimus
+                                quaerat aspernatur eos et natus placeat, facere, necessitatibus adipisci hic? Temporibus
+                                ipsa assumenda praesentium exercitationem. Beatae non totam tempora eos veniam
+                                excepturi! Animi aliquam eligendi ullam delectus totam laudantium excepturi distinctio
+                                expedita iste. Architecto assumenda sed, voluptatum adipisci consequatur dolor dicta
+                                voluptas porro dolore ea, veritatis recusandae eius officiis optio ullam eligendi, nihil
+                                labore accusantium quia voluptates expedita est aperiam voluptatibus! Iusto cupiditate
+                                dicta, saepe vitae nesciunt quibusdam quis magnam sequi officiis! Nam placeat, aliquam
+                                expedita dolorem sit suscipit eveniet ad minima quidem. Atque, repellat enim temporibus
+                                amet totam labore eos ipsa eius voluptatem itaque illum. Necessitatibus, accusamus
+                                officia. Earum, rem recusandae non harum distinctio minima repellendus voluptas enim
+                                illum, placeat similique. Excepturi doloribus saepe reiciendis iure natus, harum fuga
+                                illo ipsam voluptate dolorem magni ullam neque temporibus expedita unde eligendi earum
+                                nisi? Unde aut excepturi saepe vitae hic! Quisquam nobis vel cupiditate unde eius nisi
+                                repellat? Dolores voluptatibus rem neque reprehenderit tempore corporis iure, quo, ab
+                                cum eius doloribus modi aperiam veniam asperiores eaque temporibus sint illum voluptas.
+                                Voluptate itaque distinctio, enim earum est numquam fugiat consectetur quo perspiciatis
+                                nostrum odit ex deleniti hic modi, illum maxime facilis qui esse, minus vero tempore
+                                minima incidunt. Necessitatibus animi obcaecati vitae! Esse nam, laudantium suscipit
+                                officia reprehenderit deserunt ipsa eveniet nisi a ad libero non tempora tempore. Dicta
+                                magnam quaerat exercitationem optio aperiam ea praesentium accusamus iste, error
+                                quibusdam voluptates eligendi quasi voluptas consequuntur illum fugiat laudantium
+                                recusandae sequi sit quis cum officiis. Odio libero est voluptate assumenda corrupti
+                                delectus nulla maiores, perferendis molestias sed iure obcaecati blanditiis expedita
+                                cupiditate accusantium ducimus iste nam nobis debitis repellat reiciendis quidem
+                                impedit. Dolor, mollitia aspernatur corrupti doloribus eligendi quos, magnam nesciunt
+                                libero ipsa, nam sequi iure? Perferendis minima vel nulla, a recusandae harum non iste!
+                                Ratione recusandae repellendus distinctio delectus consequuntur vero adipisci sed eius,
+                                inventore nemo accusantium iusto at dolorem quas, dicta eveniet praesentium modi
+                                veritatis ut. Blanditiis aperiam officiis necessitatibus eum, vero veritatis quis amet
+                                architecto cupiditate. Neque maiores excepturi nemo qui. Impedit alias blanditiis cumque
+                                minima, iusto vitae, numquam facilis, inventore repellendus aperiam quo error
+                                architecto! Nihil eveniet unde animi rerum necessitatibus, eos illum impedit dignissimos
+                                aspernatur qui minus magnam doloremque distinctio doloribus aliquam laboriosam nobis
+                                sapiente sit quis suscipit rem recusandae at quam. Eaque expedita temporibus similique
+                                nesciunt provident alias magnam doloribus aspernatur, ratione fugit repellendus dolores
+                                sunt laudantium consectetur doloremque modi corporis. Magnam assumenda iste, vitae quod
+                                maiores culpa accusantium corporis possimus facere nulla sed nihil, ipsa aperiam fugit
+                                amet voluptatem. Asperiores, omnis reiciendis dignissimos, libero possimus, corrupti
+                                vero qui consequuntur quas quam doloremque officiis accusamus assumenda labore nobis
+                                voluptatum suscipit iusto quidem ullam adipisci ab a. Ducimus soluta quidem, pariatur
+                                velit amet ab non similique, adipisci, quos quam nihil quisquam officiis consectetur!
+                                Consequatur consectetur eos voluptatibus odio velit? Optio esse quas iste molestiae nam
+                                enim voluptates, eum ex perspiciatis repudiandae architecto beatae consequatur
+                                cupiditate asperiores iusto quae numquam reiciendis obcaecati ratione! Vel eligendi,
+                                corporis laudantium beatae labore sapiente a voluptas commodi blanditiis, soluta, hic
+                                quam laborum vitae nesciunt optio impedit nulla itaque! In nobis corporis perspiciatis
+                                soluta delectus aliquid praesentium sint exercitationem minus! Eum pariatur quod culpa
+                                eos quos animi voluptates aperiam corrupti! Maiores sequi itaque impedit, odit dolorum
+                                quo incidunt deserunt quos nulla suscipit numquam. Natus maxime laborum facilis, rem
+                                sapiente placeat beatae earum hic sequi officia quod sint debitis consequatur ex esse
+                                aspernatur vitae. Aspernatur rerum error numquam, magni rem nemo facere obcaecati
+                                architecto culpa? Necessitatibus officia nisi dolorum, debitis maxime similique nulla
+                                modi illum explicabo, cumque esse molestias sequi dolor nam rerum quae sunt quod nobis
+                                mollitia illo quam porro, vero ex? Ullam, mollitia nam? Perspiciatis at a, labore veniam
+                                quidem minima pariatur repudiandae illum necessitatibus veritatis soluta incidunt
+                                numquam, tempore ullam officiis. Similique, voluptate. A incidunt iste animi
+                                perspiciatis harum vero corporis, libero numquam? Excepturi suscipit quos, voluptates
+                                placeat possimus deserunt quae sed quod eligendi voluptatibus fugit eum dolor quo,
+                                maiores architecto sapiente delectus rem fuga maxime! Et iste eaque maxime laboriosam
+                                officiis perspiciatis, debitis animi, odit, numquam earum voluptas mollitia quas nobis
+                                sit asperiores laborum distinctio repellat? Possimus quod ea alias debitis officia quia
+                                quisquam iusto fuga, sint facilis velit deleniti incidunt consectetur quae animi unde
+                                molestiae beatae ab rem nesciunt maiores a corporis praesentium! Ab, earum ratione.
+                                Praesentium quod modi eveniet pariatur quas culpa labore laborum neque aliquam numquam
+                                accusantium rerum dolorum quasi, ipsum porro consequatur dolore iste tempore magnam
+                                voluptate? Saepe quibusdam a ratione eum id doloremque esse laborum, facilis natus,
+                                nostrum iure unde cumque, quas ad? Minus cum fugit molestias, neque quasi perferendis
+                                modi a voluptatibus voluptas assumenda, nemo eveniet? Laboriosam similique impedit
+                                corrupti placeat, ad sed facere et saepe cupiditate nisi nesciunt? Odit explicabo atque
+                                commodi quis accusamus voluptatum odio, dicta dolores accusantium velit ullam! Harum
+                                totam inventore, maxime adipisci, dolorum eum velit deserunt ea temporibus quis
+                                distinctio nostrum consectetur saepe labore quos assumenda voluptatem aliquid quod
+                                consequuntur dolorem voluptates officiis ipsam nesciunt? Exercitationem itaque animi
+                                similique eveniet saepe voluptas libero neque et doloremque nihil necessitatibus iste
+                                repudiandae quod cupiditate cumque consectetur architecto, rerum quos ex inventore quis
+                                in. Commodi dicta asperiores eum repudiandae natus quidem necessitatibus sapiente
+                                expedita eaque. Eligendi commodi dicta architecto cum asperiores voluptatem, accusantium
+                                est facere dolore eos, sunt mollitia incidunt fugit aut alias eaque totam quibusdam odio
+                                quia. Aliquid, distinctio ea officiis assumenda facilis sit maiores minima deserunt quia
+                                modi nihil quidem earum blanditiis sequi laudantium in rem dignissimos. Accusantium
+                                exercitationem veritatis nesciunt, dolorum fugiat officiis deleniti? Quae, cumque at
+                                assumenda voluptatem adipisci nisi eaque, in ut id eveniet distinctio! Quisquam ducimus
+                                voluptatum, cumque, delectus error dolore ea, culpa quis nam nemo architecto amet.
+                                Aliquam nisi et accusantium aut expedita sequi blanditiis optio. Libero quasi cumque
+                                laudantium sequi totam? Accusamus nobis earum aliquam? Quisquam minima commodi voluptas
+                                aut deserunt? Cupiditate, unde ipsa iste accusantium perferendis veritatis voluptas quis
+                                dicta dolorem adipisci recusandae magnam eligendi saepe nostrum temporibus voluptatum
+                                laboriosam voluptatem voluptates amet repudiandae rem labore dignissimos quia?
+                                Architecto eveniet deleniti minus, blanditiis ab dolor fugiat tempore quasi, quia quam
+                                laudantium. Nam eveniet vel hic placeat tempore, voluptate ut, minus commodi, amet totam
+                                ad sequi illum in a iste excepturi vitae numquam. Hic pariatur iste inventore
+                                accusantium? Blanditiis, a ab! Doloremque, distinctio. Eveniet modi vero officiis nemo
+                                voluptatibus perferendis ipsam voluptate esse cumque tempore?
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <style>
+                .comment-get-file:hover {
+                    font-weight: 700;
+                }
+            </style>
+            <div class="comment-get-wrap m-t-40" style="width:100%;display: flex;">
+                <div class="comment-get-article" style="width:100%;padding-right:5%;padding-left: 10%;">
+                    <div class="comment-get-info p-t-10" style="display: flex;">
+                        <div class="comment-get-member" style="display: flex;justify-content: space-between;">
+                            <div>개발과 사원 / 홍길동 - 3시간 전</div>
+                        </div>
+                        <div class="comment-get-fileupload p-l-20 p-b-5 fs-15">
+                            <span>첨부파일 : </span>
+                            <span class="comment-get-file pointer" style="color: #666;">세금명세서.pdf</span>
+                        </div>
+                    </div>
+                    <div style="width:100%;padding: 10px;border-bottom: 1px solid #ccc;">
+                        개발과 확인했습니다.
+                    </div>
+                </div>
+            </div>
+            <div class="comment-get-wrap" style="width:100%;display: flex;">
+                <div class="comment-get-article" style="width:100%;padding-right:5%;padding-left: 10%;">
+                    <div class="comment-get-info p-t-10" style="display: flex;">
+                        <div class="comment-get-member" style="display: flex;justify-content: space-between;">
+                            <div>인사과 사원 / 김철수 - 2022/07/28</div>
+                        </div>
+                        <div class="comment-get-fileupload p-l-20 p-b-5 fs-15">
+                            <!-- <span>첨부파일 : </span>
+                            <span class="comment-get-file pointer" style="color: #666;">세금명세서.pdf</span> -->
+                        </div>
+                    </div>
+                    <div style="width:100%;padding: 10px;border-bottom: 1px solid #ccc;">
+                        인사과 확인했습니다.
+                    </div>
+                </div>
+            </div>
+            <div class="comment-get-wrap" style="width:100%;display: flex;">
+                <div class="comment-get-article" style="width:100%;padding-right:5%;padding-left: 10%;">
+                    <div class="comment-get-info p-t-10" style="display: flex;">
+                        <div class="comment-get-member" style="display: flex;justify-content: space-between;">
+                            <div>영업과 사원 / 김영희 - 2022/07/28</div>
+                        </div>
+                        <div class="comment-get-fileupload p-l-20 p-b-5 fs-15">
+                            <!-- <span>첨부파일 : </span>
+                            <span class="comment-get-file pointer" style="color: #666;">세금명세서.pdf</span> -->
+                        </div>
+                    </div>
+                    <div style="width:100%;padding: 10px;border-bottom: 1px solid #ccc;">
+                        영업과 확인했습니다.
+                    </div>
+                </div>
+            </div>
+            <div class="comment-set-wrap" style="width:100%;display: flex;">
+                <div class="comment-set-article" style="width:100%;padding-right:5%;padding-left: 10%;">
+                    <div class="comment-set-info p-t-10" style="">
+                        <div class="comment-set-member p-t-30 p-b-10" style="display: flex;justify-content: space-between;">
+                            <b>댓글 작성</b>
+                        </div>
+                        <div class="comment-set-fileupload">
+                            <input class="input-form" type="file" multiple style="border-bottom: none;" />
+                        </div>
+                    </div>
+                    <div>
+                        <textarea name="" id="" class="comment-set-content noto fs-16"
+                            style="width:100%;min-height: 400px;border: 1px solid #ccc;resize: none;padding: 10px;" cols="30"
+                            rows="10"></textarea>
+                    </div>
+                    <div class="comment-set-submit m-t-20" style="display:flex;justify-content:space-between;">
+                        <div></div>
+                        <div>
+                            <button type="button" class="btn-tomato noto">등록</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <span>&copy;Copyright 2022. All Rights Reserved.</span>
+    </footer>
+</body>
+<script src="../../js/fixed_menu.js"></script>
+<script>
+</script>
+
+</html>
