@@ -1,8 +1,5 @@
 <!-- TODO:  -->
-<!-- 페이지 접속 시 정보가 있다면 미리입력 -->
-<!-- 사진 올리기 -->
-<!-- form -->
-<!-- 새로고침 / 확인하고 진행 -->
+<!-- 별 아이콘 클릭 시 즐겨찾기 이동 -->
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -322,6 +319,10 @@
         .active-star {
             color:#ff0;
         }
+
+        .todo-card:hover {
+            outline: 1px solid #ccc;
+        }
     </style>
     <main>
         <section>
@@ -340,7 +341,6 @@
                         <div>
                             <span class="active-star"><i class="fas fa-star"></i></span>
                         </div>
-                        
                     </div>
                     <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
                 </div>
@@ -355,15 +355,79 @@
             </div>
             <div class="todo-container" style="display: flex;">
                 <div class="todo-card m-r-30">
-                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff">오늘 할 일</div>
+                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff;display: flex;justify-content: space-between;">
+                        <div>
+                            오늘 할 일
+                        </div>
+                        <div>
+                            <span class="active-star"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
                     <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
                 </div>
                 <div class="todo-card m-r-30">
-                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff">오늘 할 일</div>
+                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff;display: flex;justify-content: space-between;">
+                        <div>
+                            오늘 할 일
+                        </div>
+                        <div>
+                            <span class="active-star"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
                     <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
                 </div>
                 <div class="todo-card m-r-30">
-                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff">오늘 할 일</div>
+                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff;display: flex;justify-content: space-between;">
+                        <div>
+                            오늘 할 일
+                        </div>
+                        <div>
+                            <span class="active-star"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                    <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="addr fs-18 m-b-20" style="border-bottom: 1px solid #ccc;">
+                <div>
+                    <span class="icon m-r-2" style="color: #3699ff"><i class="fas fa-check-square"></i></span>
+                    <span style="font-weight: 500;">완료한 작업</span>
+                </div>
+            </div>
+            <div class="todo-container" style="display: flex;">
+                <div class="todo-card m-r-30">
+                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff;display: flex;justify-content: space-between;">
+                        <div>
+                            오늘 할 일
+                        </div>
+                        <div>
+                            <span class="active-star"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                    <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
+                </div>
+                <div class="todo-card m-r-30">
+                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff;display: flex;justify-content: space-between;">
+                        <div>
+                            오늘 할 일
+                        </div>
+                        <div>
+                            <span class="active-star"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                    <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
+                </div>
+                <div class="todo-card m-r-30">
+                    <div class="todo-title" style="background-color: tomato;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px 10px;color:#fff;display: flex;justify-content: space-between;">
+                        <div>
+                            오늘 할 일
+                        </div>
+                        <div>
+                            <span class="active-star"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
                     <div class="todo-content" style="height: 200px;border: 1px solid #ddd;padding:10px;">dd</div>
                 </div>
             </div>
