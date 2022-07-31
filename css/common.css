@@ -1214,6 +1214,15 @@ input {
     font-size:12px;
 }
 
+.input-500 {
+    padding:5px;
+    border-radius: 2px;
+    border:1px solid #d5d5d5;
+    width:500px;
+    height:35px;
+    font-size:12px;
+}
+
 .input
 
 /* TODO: select design update */
