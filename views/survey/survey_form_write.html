@@ -329,11 +329,11 @@
         }
 
         .time-icon:hover {
-            color:#000 !important;
+            color: #000 !important;
         }
 
-        .plus-icon:hover {
-            color:#000 !important;
+        .example-add:hover {
+            color: #000 !important;
         }
     </style>
     <main>
@@ -421,7 +421,7 @@
                                         </select>
                                     </div>
                                     <div class="change-select m-r-20">
-                                        <select name="" id="" class="sel-135">
+                                        <select name="" id="" class="sel-135" onchange="showMaxNum($(this).val());">
                                             <option value="one">단일 선택</option>
                                             <option value="many">복수 선택</option>
                                         </select>
@@ -433,27 +433,34 @@
                                 </div>
                             </td>
                         </tr>
-                        <div class="if-choice">
-                            <tr>
-                                <td>보기</td>
-                                <td>
-                                    <div style="margin-bottom: 10px;">
-                                        <input type="text" class="input-500">
-                                    </div>
-                                    <div id="temp">
-                                        <div class="example-wrap" style="margin-bottom: 10px;">
-                                            <input type="text" class="input-500">
-                                            <span class="time-icon fs-20 m-l-10 pointer" style="line-height: 32px;color:#888"><i class="fas fa-times"></i></span>
+                        <tr>
+                            <td>최대 선택 개수</td>
+                            <td>
+                                <select name="" id="" class="sel-135">
+                                    <option value="0">제한없음</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <div class="if-select-choice-wrap">
+                            <div class="if-select-choice">
+                                <tr>
+                                    <td>보기</td>
+                                    <td>
+                                        <!-- TODO: 보기 추가 클릭 시 input창 늘어나게 하고 / x아이콘 클릭 시 input창 없애기 -->
+                                        <div class="example-wrap">
+                                            <div class="example-part m-b-10">
+                                                <input type="text" class="input-500">
+                                                <!-- <span class="time-icon fs-20 m-l-10 pointer" style="line-height: 32px;color:#888" onclick="deleteExample($(this).parent().index());"><i class="fas fa-times"></i></span> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- TODO: 보기 추가 클릭 시 input창 늘어나게 하고 / x아이콘 클릭 시 input창 없애기 -->
-                                    <div class="plus-icon pointer" style="line-height: 32px;color:#888">
-                                        <span class="fs-20"><i class="fas fa-plus"></i></span>
-                                        <span>보기 추가</span>
-                                    </div>
-                                    
-                                </td>
-                            </tr>
+                                        <div class="example-add pointer"
+                                            style="line-height: 32px;color:#888;display: inline-block;" onclick="addExample();">
+                                            <span class="fs-20"><i class="fas fa-plus"></i></span>
+                                            <span>보기 추가</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </div>
                         </div>
                     </table>
                 </div>
@@ -487,44 +494,95 @@
         // });
     })
 
+    // 설문 문항 타입 첫번째 select에 따라 두번째 select가 바뀜
     function changeSelect(optionVal) {
         // alert(optionVal);
         if (optionVal === "choice") {
             // alert("choicevv");
-            const changeSelectHtml =
-                '<select name="" id="" class="sel-135"><option value="one">단일 선택</option><option value="many">복수 선택</option></select>';
+            showExample();
+            const changeSelectHtml = `
+                <select name="" id="" class="sel-135" onchange="showMaxNum($(this).val());">
+                    <option value="one">단일 선택</option>
+                    <option value="many">복수 선택</option>
+                </select>
+            `;
             $('.change-select').html(changeSelectHtml);
         }
         if (optionVal === "text") {
             // alert("textvv");
-            const changeSelectHtml =
-                '<select name="" id="" class="sel-135"><option value="short">단문 입력</option><option value="long">장문 입력</option></select>';
+            hideExample();
+            const changeSelectHtml = `
+                <select name="" id="" class="sel-135">
+                    <option value="short">단문 입력</option>
+                    <option value="long">장문 입력</option>
+                </select>
+            `;
             $('.change-select').html(changeSelectHtml);
         }
         if (optionVal === "score") {
             // alert("scorevv");
-            const changeSelectHtml =
-                '<select name="" id="" class="sel-135"><option value="3">3점</option><option value="5">5점</option><option value="10">10점</option></select>';
+            hideExample();
+            const changeSelectHtml = `
+                <select name="" id="" class="sel-135">
+                    <option value="3">3점</option>
+                    <option value="5">5점</option>
+                    <option value="10">10점</option>
+                </select>
+            `;
             $('.change-select').html(changeSelectHtml);
         }
     }
 
-    $(function() {
-        $('.time-icon').click(function() {
-            alert("thisistimeicon");
-            // $(this).parent().detach();
-        });
+    function addExample() {
+        // alert('addExample');
+        let inputHtml = `
+            <div class="example-part m-b-10">
+                <input type="text" class="input-500">
+                <span class="time-icon fs-20 m-l-10 pointer" style="line-height: 32px;color:#888" onclick="deleteExample($(this).parent().index());"><i class="fas fa-times"></i></span>
+            </div>
+        `;
+        $('.example-wrap').append(inputHtml);
+    }
 
-        $('.plus-icon').click(function() {
-            // alert();
-            let temp22 = $('#temp').html();
-            const htmlText = `<div class="example-wrap" style="margin-bottom: 10px;">
-                                        <input type="text" class="input-500">
-                                        <span class="time-icon fs-20 m-l-10 pointer" style="line-height: 32px;color:#888"><i class="fas fa-times"></i></span>
-                                    </div>`;
-            $('.example-wrap').last().html(temp22 + htmlText);
-        });
-    })
+    function deleteExample(num) {
+        // alert('deleteExample');
+        // alert(num);
+        $('.example-part').eq(num).detach();
+    }
+
+    function showExample() {
+        alert('showExample');
+        let inputHtml = `
+            <tr>
+                <td>보기</td>
+                <td>
+                    <div class="example-wrap">
+                        <div class="example-part m-b-10">
+                            <input type="text" class="input-500">
+                        </div>
+                    </div>
+                    <div class="example-add pointer"
+                        style="line-height: 32px;color:#888;display: inline-block;" onclick="addExample();">
+                        <span class="fs-20"><i class="fas fa-plus"></i></span>
+                        <span>보기 추가</span>
+                    </div>
+                </td>
+            </tr>
+        `;
+        $('.if-select-choice').append(inputHtml);
+    }
+
+    function hideExample() {
+        alert('hideExample');
+        $('.if-select-choice').detach();
+    }
+
+    function showMaxNum(text) {
+        // alert(text);
+        if(text === 'many') {
+            alert(text);
+        }
+    }
 </script>
 
 </html>
