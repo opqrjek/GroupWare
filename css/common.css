@@ -1447,10 +1447,34 @@ td {
     cursor: default;
 }
 
+.weight300 {
+    font-weight: 500;
+}
+
 .weight500 {
     font-weight: 500;
 }
 
-.weight300 {
-    font-weight: 500;
+.weight700 {
+    font-weight: 700;
+}
+
+.weight900 {
+    font-weight: 900;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-btw {
+    justify-content: space-between;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.flex-column {
+    flex-direction: column;
 }

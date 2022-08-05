@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        padding:30px;
+    }
+
+    .input-style {
+        padding:5px;
+        border-radius: 2px;
+        border:1px solid #d5d5d5;
+        width:135px;
+        height:35px;
+        font-size:12px;
+    }
+
+    .input-part {
+        display: flex;
+
+    }
+
+    .cancle-btn {
+        /* width:50px; */
+        height:35px;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+    }
+
+    .add-btn {
+        width:150px;
+        height:35px;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="input-wrap">
+        <div class="input-part">
+            <input type="text" class="input-style" value="html로 만든 input">
+            <div class="cancle-btn" onclick="onclickEvent();">cancle-btn</div>
+        </div>
+    </div>
+    <div class="add-btn">add-btn</div>
+</body>
+<script>
+    $(function() {
+        // 클래스 호출 alert
+        $('.cancle-btn').click(function() {
+            alert('cancle-btn');
+        });
+
+        // input-wrap 내 input-part 추가
+        $('.add-btn').click(function() {
+            let inputSet = `
+                <div class="input-part">
+                    <input type="text" class="input-style" value="js로 만든 input">
+                    <div class="cancle-btn" onclick="onclickEvent();">cancle-btn</div>
+                </div>
+            `;
+            $('.input-wrap').append(inputSet);
+        });
+    })
+
+    // onclick 호출 alert
+    function onclickEvent() {
+        alert("onclickEvent");
+    }
+</script>
+</html>
